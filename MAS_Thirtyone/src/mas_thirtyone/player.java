@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class player {
    public card [] hand;
    public String name;
-   public int handvalue;
+   public double handvalue;
    public boolean threeOfsameSuit;
    public boolean twoOfSameSuit;
    private int twosuite;//the position of one of the cards that shapes the two suit
@@ -45,14 +45,16 @@ public class player {
             sortCards();} else{twoOfSameSuit=false;}
         
         
-      
+     
        if (!threeOfAKind && !threeOfsameSuit && !twoOfAKind && !twoOfSameSuit)
        {
            setHighestSuit();
+          
        }
-       setHighestCard();
-      
-        
+        setHighestCard();
+       System.out.println("Player "+name +"'s highsest card is :"+highestCard.name);
+        System.out.println("Player "+name +"'s highest suit is :"+highestSuit);
+        calculateHandValue();
         
     }
 
@@ -139,6 +141,7 @@ public class player {
            if(hand[0].type.equals(hand[1].type) && hand[1].type.equals(hand[2].type))
            {
                this.threeOfAKind=true;
+               highestSuit=hand[0].suit;
            }
            else{
                this.threeOfAKind=false;
@@ -150,9 +153,10 @@ public class player {
            if(hand[0].type.equals(hand[1].type) || hand[1].type.equals(hand[2].type) || hand[0].type.equals(hand[2].type))
            {
               this.twoOfAKind=true;
-              if(hand[0].type.equals(hand[1].type)){this.twokind=0;}
+              if(hand[0].type.equals(hand[1].type)){this.twokind=0; highestSuit=hand[1].suit;}
               else{
                 twokind=2;
+                highestSuit=hand[2].suit;
               }
               
            }else{this.twoOfAKind=false;}
@@ -223,4 +227,18 @@ public class player {
         this.playerNumber = playerNumber;
     }
     
+    public  void calculateHandValue()
+    {
+        if(threeOfAKind){this.handvalue = 30.5;}
+        else{handvalue=0;
+            for(int i=0; i<=2;i++)
+            {
+                if(hand[i].suit.equals(highestSuit))
+                {
+                    handvalue = handvalue+ (double)(hand[i].value);
+                }
+            }
+        }
+        System.out.println("Player "+name +"'s hand value is :"+handvalue);
+    }
 }

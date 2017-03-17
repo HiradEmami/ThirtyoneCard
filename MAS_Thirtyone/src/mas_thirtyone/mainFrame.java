@@ -135,7 +135,7 @@ private int playerTurn=0;
     {int randNumber= randInt(0, cardPool.size()-1);
         card temp = cardPool.get(randNumber);
         cardPool.remove(randNumber);
-        System.out.println(temp.name+" "+cardPool.get(randNumber).name);
+       
         
         return temp;
     }

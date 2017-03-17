@@ -18,6 +18,7 @@ public class player {
    public boolean twoOfAKind;
    public card highestCard;
    public String highestSuit;
+   public  int playerNumber;
    public ArrayList <cardKnowledge> knowsCard;
    
 
@@ -39,8 +40,9 @@ public class player {
        
         setThreeOfsameSuit();
         if(!threeOfsameSuit){
-         sortCards(); //needs work
-            setTwoOfSameSuit();} else{twoOfSameSuit=false;}
+          //needs work
+            setTwoOfSameSuit();
+            sortCards();} else{twoOfSameSuit=false;}
         
         
       
@@ -101,13 +103,27 @@ public class player {
        {
            for(int i=0; i<=hand.length-2;i++)
            {
-               if(hand[i].value<hand[i+1].value)
+              if(hand[i].suit.equals(highestSuit) && hand[i+1].suit.equals(highestSuit))
+              {
+                   if(hand[i].value<hand[i+1].value )
                {
+               
+              //System.out.println("Swapped "+hand[i].suit + " "+ highestSuit+" swapped "+hand[i].name+" with "+hand[i+1].name);
                card temp=  hand[i];
                hand[i]=hand[i+1];
                hand[i+1]=temp;
                swapped=true;
+               
+               
                }
+              }else{
+                  if(!hand[i].suit.equals(highestSuit) && hand[i+1].suit.equals(highestSuit)){
+                      card temp=  hand[i];
+               hand[i]=hand[i+1];
+               hand[i+1]=temp;
+               swapped=true;
+                  }
+              }
            }
            if(swapped){sorted=false;swapped=false;}else{sorted=true;}
        }
@@ -198,4 +214,13 @@ public class player {
         
         knowsCard.add(new cardKnowledge(p, argPickd));
     }
+
+    public int getPlayerNumber() {
+        return playerNumber;
+    }
+
+    public void setPlayerNumber(int playerNumber) {
+        this.playerNumber = playerNumber;
+    }
+    
 }

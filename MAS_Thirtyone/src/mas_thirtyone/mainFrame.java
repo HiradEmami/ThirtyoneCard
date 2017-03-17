@@ -86,11 +86,11 @@ private int playerTurn=0;
          playerPool.add(new player("widow", temp1, temp2,temp3));
          playerPool.get(playerPool.size()-1).setPlayerNumber(100);
         
-        Player_Panes.setVisible(true);
-        for(int i=0;i<=numberofPlayer+1;i++)
-        {
-            setPlayerPanel(playerPool.get(i));
-        }
+//        Player_Panes.setVisible(true);
+//        for(int i=0;i<=numberofPlayer+1;i++)
+//        {
+//            setPlayerPanel(playerPool.get(i));
+//        }
     }
     
     private void setPlayerPanel(player p)
@@ -260,6 +260,9 @@ private int playerTurn=0;
         jTAcards8 = new javax.swing.JTextArea();
         jplayername8 = new javax.swing.JLabel();
         viewPlayerComboBox = new javax.swing.JComboBox<>();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        answer = new javax.swing.JTextArea();
+        jButton3 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -615,6 +618,17 @@ private int playerTurn=0;
             }
         });
 
+        answer.setColumns(20);
+        answer.setRows(5);
+        jScrollPane12.setViewportView(answer);
+
+        jButton3.setText("jButton3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout setupPaneLayout = new javax.swing.GroupLayout(setupPane);
         setupPane.setLayout(setupPaneLayout);
         setupPaneLayout.setHorizontalGroup(
@@ -629,20 +643,28 @@ private int playerTurn=0;
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(setupPaneLayout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 331, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1))))
                     .addGroup(setupPaneLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Player_Panes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(setupPaneLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(playerCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2))
-                            .addComponent(viewPlayerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(Player_Panes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane12)
+                                .addGap(54, 54, 54))
+                            .addGroup(setupPaneLayout.createSequentialGroup()
+                                .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(viewPlayerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(setupPaneLayout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(playerCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton2)
+                                        .addGap(124, 124, 124)
+                                        .addComponent(jButton3)))
+                                .addGap(0, 178, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         setupPaneLayout.setVerticalGroup(
@@ -652,12 +674,15 @@ private int playerTurn=0;
                 .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(playerCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addGap(65, 65, 65)
                 .addComponent(viewPlayerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Player_Panes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 263, Short.MAX_VALUE)
+                .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Player_Panes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -767,7 +792,30 @@ private int playerTurn=0;
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void viewPlayerComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPlayerComboBoxActionPerformed
-     int temp=viewPlayerComboBox.getSelectedIndex();
+    //showPan();
+    
+    }//GEN-LAST:event_viewPlayerComboBoxActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+player p = playerPool.get(viewPlayerComboBox.getSelectedIndex());
+      System.out.println("Testing for player :"+p.name);
+        String a =("First card: "+p.hand[0].name+" /type:"+p.hand[0].type+"/value: "+p.hand[0].value+" /suit: "+p.hand[0].suit+" \n"
+                + "Second card: "+p.hand[1].name+" /type: "+p.hand[1].type+" /value: "+p.hand[1].value+" /suit: "+p.hand[1].suit+" \n"
+                        + "Third card: "+p.hand[2].name+" /type:"+p.hand[2].type+"/value: "+p.hand[2].value+" /suit: "+p.hand[2].suit+" \n"
+                                + "Does he have three of same suit? "+p.threeOfsameSuit+ " \n"
+                                        + "Does he have only two of the same suit? "+p.twoOfSameSuit+"\n"
+                                                + "What is his highest suit? "+p.highestSuit+"\n"
+                                                         + "What is his highest card? "+p.highestCard.name+"\n"
+                                                        + "Does he have three of a kind? "+p.threeOfAKind+"\n"
+                                                        + "Does he have two of a kind? "+p.twoOfAKind+"\n"
+                                                                + "Does p1 Knows he has "+p.hand[0].name+"? "+ p.doesKnowCard(p, p.hand[0])+"\n"
+                                                                        + "hand's value "+p.handvalue+""
+                                                                                + "");
+        answer.setText(a);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+   private void showPan()
+   {
+            int temp=viewPlayerComboBox.getSelectedIndex();
      switch (temp)
      {
          case 0:
@@ -902,9 +950,7 @@ private int playerTurn=0;
              break;
          }
      }
-    }//GEN-LAST:event_viewPlayerComboBoxActionPerformed
-    // Variables declaration - do not modify                     
-    // End of variables declaration   
+   }
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -940,8 +986,10 @@ private int playerTurn=0;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Player_Panes;
+    private javax.swing.JTextArea answer;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -953,6 +1001,7 @@ private int playerTurn=0;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;

@@ -78,11 +78,19 @@ public class player {
     public void setHighestCard() {
     if(threeOfAKind){highestCard=hand[0];}
     else{
-        if (twoOfAKind){highestCard=hand[twokind];}
+        if (twoOfAKind){
+            for(int i=0;i<=2;i++)
+            {if(hand[i].suit.equals(highestSuit))
+            {
+               highestCard=hand[i];
+               break;
+            }
+            }
+        }
         else{
             if(threeOfsameSuit){sortCards();highestCard=hand[0];}
             else{
-                if(twoOfSameSuit){highestCard=hand[twosuite];}
+                if(twoOfSameSuit){sortCards();highestCard=hand[0];}
                 else{ highestCard=hand[0];}
             }
         }
@@ -91,10 +99,33 @@ public class player {
     }
     
     public void setHighestSuit(){
-        sortCards();
+        sortCardsWithoutSuit();
         highestSuit=hand[0].suit;
     }
-    
+    public void sortCardsWithoutSuit(){
+        System.out.println("Sorting player's "+name+" hand");
+        System.out.println("before sorting: "+hand[0].name+" , "+hand[1].name+ " , "+hand[2].name);
+       boolean sorted=false;
+       boolean swapped=false;
+        while(!sorted)
+       {
+           for(int i=0; i<=hand.length-2;i++)
+           {
+              
+                   if(hand[i].value<hand[i+1].value )
+               {
+               
+              //System.out.println("Swapped "+hand[i].suit + " "+ highestSuit+" swapped "+hand[i].name+" with "+hand[i+1].name);
+               card temp=  hand[i];
+               hand[i]=hand[i+1];
+               hand[i+1]=temp;
+               swapped=true;
+               }
+               
+             
+           }
+           if(swapped){sorted=false;swapped=false;}else{sorted=true;}}
+    }
     public void sortCards(){
         System.out.println("Sorting player's "+name+" hand");
         System.out.println("before sorting: "+hand[0].name+" , "+hand[1].name+ " , "+hand[2].name);

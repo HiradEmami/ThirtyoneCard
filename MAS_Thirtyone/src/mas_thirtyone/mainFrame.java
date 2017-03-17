@@ -15,7 +15,7 @@ private ArrayList <card> cardPool; //array list for all cards
     }
     
     public void testWithRandomPlayer(){
-        player p = new player( "P1", cardPool.get(2), cardPool.get(10), cardPool.get(5));
+        player p = new player( "P1", cardPool.get(2), cardPool.get(5), cardPool.get(15));
         player d = new player("P2", cardPool.get(3), cardPool.get(11), cardPool.get(6));
         
         System.out.println("Testing player p1 with these cards: "+p.hand[0].name+" , "+ p.hand[1].name+" , "+p.hand[2].name);
@@ -33,8 +33,9 @@ private ArrayList <card> cardPool; //array list for all cards
                                                                 + "Does p1 Knows he has h7? "+ p.doesKnowCard(p, cardPool.get(2))+"\n"
                                                                         + "Does p1 Knows he has "+cardPool.get(19).name+"? "+ p.doesKnowCard(p, cardPool.get(19))+""
                                                                                 + "");
+       card temp=p.hand[0];
         p.swapCard(p.hand[0],cardPool.get(19));
-        System.out.println("Does p1 Knows he has h7? "+ p.doesKnowCard(p, cardPool.get(2))+"\n"
+        System.out.println("Does p1 Knows he has "+temp.name+"? "+ p.doesKnowCard(p, temp)+"\n"
                                                                         + "Does p1 Knows he has "+cardPool.get(19).name+"? "+ p.doesKnowCard(p, cardPool.get(19))+""
                                                                                 + "");
     }

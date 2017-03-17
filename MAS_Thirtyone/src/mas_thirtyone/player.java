@@ -35,9 +35,13 @@ public class player {
         setThreeOfsameSuit();
         if(!threeOfsameSuit){setTwoOfSameSuit();} else{twoOfSameSuit=false;}
         
+        
         setThreeOfAKind();
        if(!threeOfAKind){setTwoOfAKind();} else{ twoOfAKind=false;}
-       
+       if (!threeOfAKind && !threeOfsameSuit && !twoOfAKind && !twoOfSameSuit)
+       {
+           setHighestSuit();
+       }
         
       
         
@@ -62,7 +66,40 @@ public class player {
     }
     
     public void setHighestCard() {
-        
+    if(threeOfsameSuit){sortCards(); this.highestCard=hand[0];}
+    else{}
+  
+    
+    
+    }
+    
+    public void setHighestSuit(){
+        sortCards();
+        highestSuit=hand[0].suit;
+    }
+    
+    public void sortCards(){
+        System.out.println("Sorting player's "+name+" hand");
+        System.out.println("before sorting: "+hand[0].name+" , "+hand[1].name+ " , "+hand[2].name);
+       boolean sorted=false;
+       boolean swapped=false;
+       
+       while(!sorted)
+       {
+           for(int i=0; i<=hand.length-2;i++)
+           {
+               if(hand[i].value<hand[i+1].value)
+               {
+               card temp=  hand[i];
+               hand[i]=hand[i+1];
+               hand[i+1]=temp;
+               swapped=true;
+               }
+           }
+           if(swapped){sorted=false;swapped=false;}else{sorted=true;}
+       }
+       
+         System.out.println("after sorting: "+hand[0].name+" , "+hand[1].name+ " , "+hand[2].name);
     }
     
     public void setThreeOfAKind() {
@@ -87,8 +124,8 @@ public class player {
            }else{this.twoOfAKind=false;}
     }
     
-    public boolean doesKnowCard(player p, card c)
-    {   boolean knowledge=false;
+    public boolean doesKnowCard(player p, card c){  
+        boolean knowledge=false;
         for(int i=0;i<=knowsCard.size()-1;i++)
         {
             if(p.name.equals(knowsCard.get(i).targetPlayer.name))
@@ -103,13 +140,14 @@ public class player {
         return knowledge;
     }
     
-    public void swapCard(card yourCard, card widowCard)
-    {   int locationOftheCard= findAcardInYourHand(yourCard);
+    public void swapCard(card yourCard, card widowCard){  
+        int locationOftheCard= findAcardInYourHand(yourCard);
         card temp =hand[locationOftheCard];
         hand[locationOftheCard]= widowCard;
         System.out.println("Player "+name+" successfully exchanged card "+temp.name+" with card "+hand[locationOftheCard].name);
         updateKnowledgeAfterExchange(this, yourCard, widowCard);
     }
+    
     public int findAcardInYourHand(card yourCard){
           int yourCardposition=0;
         for(int i=0;i<=hand.length-1;i++)
@@ -125,8 +163,7 @@ public class player {
         return yourCardposition;
     }
     
-    public void updateKnowledgeAfterExchange(player p , card argDropped, card argPickd)
-    {
+    public void updateKnowledgeAfterExchange(player p , card argDropped, card argPickd) {
         //removing previous knowledge 
         for(int i=0;i<=knowsCard.size()-1;i++)
         {

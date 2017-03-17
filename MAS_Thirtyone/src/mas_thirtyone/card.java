@@ -29,7 +29,7 @@ private void setType()
         case "7": {this.type="7"; break;}
         case "8": {this.type="8"; break;}
         case "9": {this.type="9"; break;}
-        case "10": {this.type="10"; break;}
+        case "1": {this.type="10"; break;}
         case "q": {this.type="queen"; break;}
         case "k": {this.type="king"; break;}
         case "j": {this.type="jack"; break;}

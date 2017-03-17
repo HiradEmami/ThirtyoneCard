@@ -15,7 +15,12 @@ private ArrayList <card> cardPool; //array list for all cards
     }
     
     public void testWithRandomPlayer(){
-        player p = new player( "P1", cardPool.get(2), cardPool.get(1), cardPool.get(5));
+        player p = new player( "P1", cardPool.get(2), cardPool.get(10), cardPool.get(5));
+        player d = new player("P2", cardPool.get(3), cardPool.get(11), cardPool.get(6));
+        
+        System.out.println("Testing player p1 with these cards: "+p.hand[0].name+" , "+ p.hand[1].name+" , "+p.hand[2].name);
+        System.out.println("Testing player p2 with these cards: "+d.hand[0].name+" , "+ d.hand[1].name+" , "+d.hand[2].name);
+        
         System.out.println("Testing for player :"+p.name);
         System.out.println("First card: "+p.hand[0].name+" /type:"+p.hand[0].type+"/value: "+p.hand[0].value+" /suit: "+p.hand[0].suit+" \n"
                 + "Second card: "+p.hand[1].name+" /type: "+p.hand[1].type+" /value: "+p.hand[1].value+" /suit: "+p.hand[1].suit+" \n"
@@ -24,7 +29,14 @@ private ArrayList <card> cardPool; //array list for all cards
                                         + "Does he have only two of the same suit? "+p.twoOfSameSuit+"\n"
                                                 + "What is his highest card? "+p.highestSuit+"\n"
                                                         + "Does he have three of a kind? "+p.threeOfAKind+"\n"
-                                                        + "Does he have two of a kind? "+p.twoOfAKind);
+                                                        + "Does he have two of a kind? "+p.twoOfAKind+"\n"
+                                                                + "Does p1 Knows he has h7? "+ p.doesKnowCard(p, cardPool.get(2))+"\n"
+                                                                        + "Does p1 Knows he has "+cardPool.get(19).name+"? "+ p.doesKnowCard(p, cardPool.get(19))+""
+                                                                                + "");
+        p.swapCard(p.hand[0],cardPool.get(19));
+        System.out.println("Does p1 Knows he has h7? "+ p.doesKnowCard(p, cardPool.get(2))+"\n"
+                                                                        + "Does p1 Knows he has "+cardPool.get(19).name+"? "+ p.doesKnowCard(p, cardPool.get(19))+""
+                                                                                + "");
     }
    
     

@@ -1,6 +1,8 @@
 
 package mas_thirtyone;
 
+import java.util.ArrayList;
+
 
 
 
@@ -14,13 +16,21 @@ public class player {
    public boolean twoOfAKind;
    public card highestCard;
    public String highestSuit;
+   public ArrayList <cardKnowledge> knowsCard;
+   
 
     public player(String argName, card argFirst, card argSecond, card argThird) {
         this.name=argName;
         this.hand= new card[3];
+        this.knowsCard= new ArrayList<cardKnowledge>();
+        
         hand[0]=argFirst;
         hand[1]=argSecond;
         hand[2]=argThird;
+        
+        knowsCard.add(new cardKnowledge(this, hand[0]));
+         knowsCard.add(new cardKnowledge(this, hand[1]));
+          knowsCard.add(new cardKnowledge(this, hand[2]));
         
         setThreeOfsameSuit();
         if(!threeOfsameSuit){setTwoOfSameSuit();} else{twoOfSameSuit=false;}
@@ -77,5 +87,60 @@ public class player {
            }else{this.twoOfAKind=false;}
     }
     
+    public boolean doesKnowCard(player p, card c)
+    {   boolean knowledge=false;
+        for(int i=0;i<=knowsCard.size()-1;i++)
+        {
+            if(p.name.equals(knowsCard.get(i).targetPlayer.name))
+            {
+                if(knowsCard.get(i).targetCard.name.equals(c.name))
+                {
+                  knowledge=true;
+                  break;
+                }else{knowledge=false;}
+            }else{knowledge=false;}
+        }
+        return knowledge;
+    }
     
+    public void swapCard(card yourCard, card widowCard)
+    {   int locationOftheCard= findAcardInYourHand(yourCard);
+        card temp =hand[locationOftheCard];
+        hand[locationOftheCard]= widowCard;
+        System.out.println("Player "+name+" successfully exchanged card "+temp.name+" with card "+hand[locationOftheCard].name);
+        updateKnowledgeAfterExchange(this, yourCard, widowCard);
+    }
+    public int findAcardInYourHand(card yourCard){
+          int yourCardposition=0;
+        for(int i=0;i<=hand.length-1;i++)
+        {
+            if(hand[i].name.equals(yourCard.name))
+            {
+                yourCardposition=i;
+                return yourCardposition;
+                
+            }
+        }
+        System.out.println("Failed to find the card");
+        return yourCardposition;
+    }
+    
+    public void updateKnowledgeAfterExchange(player p , card argDropped, card argPickd)
+    {
+        //removing previous knowledge 
+        for(int i=0;i<=knowsCard.size()-1;i++)
+        {
+            if(p.name.equals(knowsCard.get(i).targetPlayer.name))
+            {
+                if(knowsCard.get(i).targetCard.name.equals(argDropped.name))
+                {
+                 knowsCard.remove(i);
+                    System.out.println("outdated Knoweledge was removed");
+                  break;
+                }
+            }
+        }
+        
+        knowsCard.add(new cardKnowledge(p, argPickd));
+    }
 }

@@ -15,7 +15,7 @@ private ArrayList <card> cardPool; //array list for all cards
     }
     
     public void testWithRandomPlayer(){
-        player p = new player( "P1", cardPool.get(2), cardPool.get(5), cardPool.get(15));
+        player p = new player( "P1", cardPool.get(2), cardPool.get(6), cardPool.get(15));
         player d = new player("P2", cardPool.get(3), cardPool.get(11), cardPool.get(6));
         
         System.out.println("Testing player p1 with these cards: "+p.hand[0].name+" , "+ p.hand[1].name+" , "+p.hand[2].name);
@@ -27,7 +27,8 @@ private ArrayList <card> cardPool; //array list for all cards
                         + "Third card: "+p.hand[2].name+" /type:"+p.hand[2].type+"/value: "+p.hand[2].value+" /suit: "+p.hand[2].suit+" \n"
                                 + "Does he have three of same suit? "+p.threeOfsameSuit+ " \n"
                                         + "Does he have only two of the same suit? "+p.twoOfSameSuit+"\n"
-                                                + "What is his highest card? "+p.highestSuit+"\n"
+                                                + "What is his highest suit? "+p.highestSuit+"\n"
+                                                         + "What is his highest card? "+p.highestCard.name+"\n"
                                                         + "Does he have three of a kind? "+p.threeOfAKind+"\n"
                                                         + "Does he have two of a kind? "+p.twoOfAKind+"\n"
                                                                 + "Does p1 Knows he has h7? "+ p.doesKnowCard(p, cardPool.get(2))+"\n"

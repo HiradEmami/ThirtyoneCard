@@ -12,6 +12,8 @@ public class player {
    public int handvalue;
    public boolean threeOfsameSuit;
    public boolean twoOfSameSuit;
+   private int twosuite;//the position of one of the cards that shapes the two suit
+   private int twokind;//the position of one of the cards that shapes the two kind
    public boolean threeOfAKind;
    public boolean twoOfAKind;
    public card highestCard;
@@ -31,18 +33,22 @@ public class player {
         knowsCard.add(new cardKnowledge(this, hand[0]));
          knowsCard.add(new cardKnowledge(this, hand[1]));
           knowsCard.add(new cardKnowledge(this, hand[2]));
-        
-        setThreeOfsameSuit();
-        if(!threeOfsameSuit){setTwoOfSameSuit();} else{twoOfSameSuit=false;}
-        
-        
-        setThreeOfAKind();
+          
+          setThreeOfAKind();
        if(!threeOfAKind){setTwoOfAKind();} else{ twoOfAKind=false;}
+       
+        setThreeOfsameSuit();
+        if(!threeOfsameSuit){
+         sortCards(); //needs work
+            setTwoOfSameSuit();} else{twoOfSameSuit=false;}
+        
+        
+      
        if (!threeOfAKind && !threeOfsameSuit && !twoOfAKind && !twoOfSameSuit)
        {
            setHighestSuit();
        }
-        
+       setHighestCard();
       
         
         
@@ -58,19 +64,26 @@ public class player {
     public void setTwoOfSameSuit(){
         if(hand[0].suit.equals(hand[1].suit) || hand[1].suit.equals(hand[2].suit) || hand[0].suit.equals(hand[2].suit))
         {this.twoOfSameSuit=true; 
-        if(hand[0].suit.equals(hand[1].suit)){this.highestSuit=hand[1].suit;}
-        else{if(hand[1].suit.equals(hand[2].suit)){this.highestSuit=hand[1].suit;} else{this.highestSuit=hand[0].suit;}}
+        if(hand[1].suit.equals(hand[2].suit)){this.highestSuit=hand[1].suit;this.twosuite=1;}
+        else{this.highestSuit=hand[0].suit;this.twosuite=0;}
         }
         else
         {this.twoOfSameSuit=false;}
     }
     
     public void setHighestCard() {
-    if(threeOfsameSuit){sortCards(); this.highestCard=hand[0];}
-    else{}
-  
-    
-    
+    if(threeOfAKind){highestCard=hand[0];}
+    else{
+        if (twoOfAKind){highestCard=hand[twokind];}
+        else{
+            if(threeOfsameSuit){sortCards();highestCard=hand[0];}
+            else{
+                if(twoOfSameSuit){highestCard=hand[twosuite];}
+                else{ highestCard=hand[0];}
+            }
+        }
+        
+    }
     }
     
     public void setHighestSuit(){
@@ -121,6 +134,11 @@ public class player {
            if(hand[0].type.equals(hand[1].type) || hand[1].type.equals(hand[2].type) || hand[0].type.equals(hand[2].type))
            {
               this.twoOfAKind=true;
+              if(hand[0].type.equals(hand[1].type)){this.twokind=0;}
+              else{
+                twokind=2;
+              }
+              
            }else{this.twoOfAKind=false;}
     }
     

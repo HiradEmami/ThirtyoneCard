@@ -17,7 +17,13 @@ private ArrayList <card> cardPool; //array list for all cards
     public void test()
     {
         player p = new player( "P1", cardPool.get(2), cardPool.get(20), cardPool.get(5));
-        System.out.println(p.hand[0].name+" "+ p.hand [1].name+ " "+p.hand[2].name+" "+p.threeOfsameSuit+ " "+p.twoOfSameSuit+" "+p.highestSuit);
+        System.out.println("Testing for player :"+p.name);
+        System.out.println("First card: "+p.hand[0].name+" /type:"+p.hand[0].type+"/value: "+p.hand[0].value+" /suit: "+p.hand[0].suit+" \n"
+                + "Second card: "+p.hand[1].name+" /type:"+p.hand[1].type+"/value: "+p.hand[1].value+" /suit: "+p.hand[1].suit+" \n"
+                        + "Third card: "+p.hand[2].name+" /type:"+p.hand[2].type+"/value: "+p.hand[2].value+" /suit: "+p.hand[2].suit+" \n"
+                                + "Does he have three of same suit? "+p.threeOfsameSuit+ " \n"
+                                        + "Does he have only two of the same suit? "+p.twoOfSameSuit+"\n"
+                                                + "What is his highest card? "+p.highestSuit);
     }
    
     

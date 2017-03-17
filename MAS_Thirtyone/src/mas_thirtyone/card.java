@@ -23,7 +23,8 @@ public class card {
 private void setType()
 {
     String [] tempArray = name.split("");
-    switch  (tempArray[0])
+    System.out.print(tempArray[1]);
+    switch  (tempArray[1])
     {
         case "7": {this.type="7"; break;}
         case "8": {this.type="8"; break;}

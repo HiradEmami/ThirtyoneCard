@@ -26,6 +26,8 @@ public class player {
         if(!threeOfsameSuit){setTwoOfSameSuit();} else{twoOfSameSuit=false;}
         
         setThreeOfAKind();
+       if(!threeOfAKind){setTwoOfAKind();} else{ twoOfAKind=false;}
+       
         
       
         
@@ -68,6 +70,12 @@ public class player {
         }
     }
     
+    public void setTwoOfAKind(){
+           if(hand[0].type.equals(hand[1].type) || hand[1].type.equals(hand[2].type) || hand[0].type.equals(hand[2].type))
+           {
+              this.twoOfAKind=true;
+           }else{this.twoOfAKind=false;}
+    }
     
     
 }

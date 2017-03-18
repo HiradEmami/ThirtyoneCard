@@ -55,8 +55,8 @@ private int playerTurn=0;
         this.playerPool= new ArrayList<player>();
         
         System.out.println("Page setup was successful");
-        Player_Panes.setVisible(false);
-        viewPlayerComboBox.setVisible(false);
+     
+        viewPlayerComboBox.setVisible(true);
     }
     
     private void setupMatch(){
@@ -86,50 +86,10 @@ private int playerTurn=0;
          playerPool.add(new player("widow", temp1, temp2,temp3));
          playerPool.get(playerPool.size()-1).setPlayerNumber(100);
         
-//        Player_Panes.setVisible(true);
-//        for(int i=0;i<=numberofPlayer+1;i++)
-//        {
-//            setPlayerPanel(playerPool.get(i));
-//        }
+
     }
     
-    private void setPlayerPanel(player p)
-    { int playernumber =p.playerNumber;
-        switch (playernumber)
-        {
-            case 0:{
-                jplayername.setText("Player :"+p.name);
-                jTAcards.setText("Player Cards: "+p.hand[0].name+" , "+p.hand[1].name+" , "+p.hand[2].name);
-                break;}
-            case 1:{ jplayername1.setText("Player :"+p.name);
-                jTAcards1.setText("Player Cards: "+p.hand[0].name+" , "+p.hand[1].name+" , "+p.hand[2].name);
-                break;}
-            case 2:{ jplayername2.setText("Player :"+p.name);
-                jTAcards2.setText("Player Cards: "+p.hand[0].name+" , "+p.hand[1].name+" , "+p.hand[2].name);
-                break;}
-            case 3:{jplayername3.setText("Player :"+p.name);
-                jTAcards3.setText("Player Cards: "+p.hand[0].name+" , "+p.hand[1].name+" , "+p.hand[2].name);
-                break;}
-            case 4:{ jplayername4.setText("Player :"+p.name);
-                jTAcards4.setText("Player Cards: "+p.hand[0].name+" , "+p.hand[1].name+" , "+p.hand[2].name);
-                break;}
-            case 5:{ jplayername5.setText("Player :"+p.name);
-                jTAcards5.setText("Player Cards: "+p.hand[0].name+" , "+p.hand[1].name+" , "+p.hand[2].name);
-                break;}
-            case 6:{jplayername6.setText("Player :"+p.name);
-                jTAcards6.setText("Player Cards: "+p.hand[0].name+" , "+p.hand[1].name+" , "+p.hand[2].name);
-                break;}
-            case 7:{jplayername7.setText("Player :"+p.name);
-                jTAcards7.setText("Player Cards: "+p.hand[0].name+" , "+p.hand[1].name+" , "+p.hand[2].name);
-                break;}
-            case 8:{jplayername8.setText("Player :"+p.name);
-                jTAcards8.setText("Player Cards: "+p.hand[0].name+" , "+p.hand[1].name+" , "+p.hand[2].name);
-                break;}
-            case 100:{jplayername9.setText("Player :"+p.name);
-                jTAcards9.setText("Player Cards: "+p.hand[0].name+" , "+p.hand[1].name+" , "+p.hand[2].name);
-                break;}
-        }
-    }
+   
     
     private card getArandomCard()
     {int randNumber= randInt(0, cardPool.size()-1);
@@ -218,47 +178,6 @@ private int playerTurn=0;
         playerCombobox = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        Player_Panes = new javax.swing.JPanel();
-        panePlayer10 = new javax.swing.JPanel();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        jTAcards9 = new javax.swing.JTextArea();
-        jplayername9 = new javax.swing.JLabel();
-        panePlayer1 = new javax.swing.JPanel();
-        jplayername = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTAcards = new javax.swing.JTextArea();
-        panePlayer2 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTAcards1 = new javax.swing.JTextArea();
-        jplayername1 = new javax.swing.JLabel();
-        panePlayer3 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTAcards2 = new javax.swing.JTextArea();
-        jplayername2 = new javax.swing.JLabel();
-        panePlayer4 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTAcards3 = new javax.swing.JTextArea();
-        jplayername3 = new javax.swing.JLabel();
-        panePlayer5 = new javax.swing.JPanel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTAcards4 = new javax.swing.JTextArea();
-        jplayername4 = new javax.swing.JLabel();
-        panePlayer6 = new javax.swing.JPanel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jTAcards5 = new javax.swing.JTextArea();
-        jplayername5 = new javax.swing.JLabel();
-        panePlayer7 = new javax.swing.JPanel();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        jTAcards6 = new javax.swing.JTextArea();
-        jplayername6 = new javax.swing.JLabel();
-        panePlayer8 = new javax.swing.JPanel();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        jTAcards7 = new javax.swing.JTextArea();
-        jplayername7 = new javax.swing.JLabel();
-        panePlayer9 = new javax.swing.JPanel();
-        jScrollPane10 = new javax.swing.JScrollPane();
-        jTAcards8 = new javax.swing.JTextArea();
-        jplayername8 = new javax.swing.JLabel();
         viewPlayerComboBox = new javax.swing.JComboBox<>();
         jScrollPane12 = new javax.swing.JScrollPane();
         answer = new javax.swing.JTextArea();
@@ -299,319 +218,6 @@ private int playerTurn=0;
             }
         });
 
-        Player_Panes.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.darkGray, java.awt.Color.lightGray));
-        Player_Panes.setLayout(new java.awt.CardLayout());
-
-        jTAcards9.setColumns(20);
-        jTAcards9.setRows(5);
-        jScrollPane11.setViewportView(jTAcards9);
-
-        jplayername9.setText("jLabel3");
-
-        javax.swing.GroupLayout panePlayer10Layout = new javax.swing.GroupLayout(panePlayer10);
-        panePlayer10.setLayout(panePlayer10Layout);
-        panePlayer10Layout.setHorizontalGroup(
-            panePlayer10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panePlayer10Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jplayername9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panePlayer10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        panePlayer10Layout.setVerticalGroup(
-            panePlayer10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panePlayer10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jplayername9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
-        );
-
-        Player_Panes.add(panePlayer10, "card10");
-
-        jplayername.setText("jLabel3");
-
-        jTAcards.setColumns(20);
-        jTAcards.setRows(5);
-        jScrollPane2.setViewportView(jTAcards);
-
-        javax.swing.GroupLayout panePlayer1Layout = new javax.swing.GroupLayout(panePlayer1);
-        panePlayer1.setLayout(panePlayer1Layout);
-        panePlayer1Layout.setHorizontalGroup(
-            panePlayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panePlayer1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jplayername)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panePlayer1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        panePlayer1Layout.setVerticalGroup(
-            panePlayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panePlayer1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jplayername)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
-        );
-
-        Player_Panes.add(panePlayer1, "card9");
-
-        jTAcards1.setColumns(20);
-        jTAcards1.setRows(5);
-        jScrollPane3.setViewportView(jTAcards1);
-
-        jplayername1.setText("jLabel3");
-
-        javax.swing.GroupLayout panePlayer2Layout = new javax.swing.GroupLayout(panePlayer2);
-        panePlayer2.setLayout(panePlayer2Layout);
-        panePlayer2Layout.setHorizontalGroup(
-            panePlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panePlayer2Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jplayername1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panePlayer2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        panePlayer2Layout.setVerticalGroup(
-            panePlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panePlayer2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jplayername1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
-        );
-
-        Player_Panes.add(panePlayer2, "card8");
-
-        jTAcards2.setColumns(20);
-        jTAcards2.setRows(5);
-        jScrollPane4.setViewportView(jTAcards2);
-
-        jplayername2.setText("jLabel3");
-
-        javax.swing.GroupLayout panePlayer3Layout = new javax.swing.GroupLayout(panePlayer3);
-        panePlayer3.setLayout(panePlayer3Layout);
-        panePlayer3Layout.setHorizontalGroup(
-            panePlayer3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panePlayer3Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jplayername2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panePlayer3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        panePlayer3Layout.setVerticalGroup(
-            panePlayer3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panePlayer3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jplayername2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
-        );
-
-        Player_Panes.add(panePlayer3, "card7");
-
-        jTAcards3.setColumns(20);
-        jTAcards3.setRows(5);
-        jScrollPane5.setViewportView(jTAcards3);
-
-        jplayername3.setText("jLabel3");
-
-        javax.swing.GroupLayout panePlayer4Layout = new javax.swing.GroupLayout(panePlayer4);
-        panePlayer4.setLayout(panePlayer4Layout);
-        panePlayer4Layout.setHorizontalGroup(
-            panePlayer4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panePlayer4Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jplayername3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panePlayer4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        panePlayer4Layout.setVerticalGroup(
-            panePlayer4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panePlayer4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jplayername3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
-        );
-
-        Player_Panes.add(panePlayer4, "card6");
-
-        jTAcards4.setColumns(20);
-        jTAcards4.setRows(5);
-        jScrollPane6.setViewportView(jTAcards4);
-
-        jplayername4.setText("jLabel3");
-
-        javax.swing.GroupLayout panePlayer5Layout = new javax.swing.GroupLayout(panePlayer5);
-        panePlayer5.setLayout(panePlayer5Layout);
-        panePlayer5Layout.setHorizontalGroup(
-            panePlayer5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panePlayer5Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jplayername4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panePlayer5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        panePlayer5Layout.setVerticalGroup(
-            panePlayer5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panePlayer5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jplayername4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
-        );
-
-        Player_Panes.add(panePlayer5, "card5");
-
-        jTAcards5.setColumns(20);
-        jTAcards5.setRows(5);
-        jScrollPane7.setViewportView(jTAcards5);
-
-        jplayername5.setText("jLabel3");
-
-        javax.swing.GroupLayout panePlayer6Layout = new javax.swing.GroupLayout(panePlayer6);
-        panePlayer6.setLayout(panePlayer6Layout);
-        panePlayer6Layout.setHorizontalGroup(
-            panePlayer6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panePlayer6Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jplayername5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panePlayer6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        panePlayer6Layout.setVerticalGroup(
-            panePlayer6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panePlayer6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jplayername5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
-        );
-
-        Player_Panes.add(panePlayer6, "card4");
-
-        jTAcards6.setColumns(20);
-        jTAcards6.setRows(5);
-        jScrollPane8.setViewportView(jTAcards6);
-
-        jplayername6.setText("jLabel3");
-
-        javax.swing.GroupLayout panePlayer7Layout = new javax.swing.GroupLayout(panePlayer7);
-        panePlayer7.setLayout(panePlayer7Layout);
-        panePlayer7Layout.setHorizontalGroup(
-            panePlayer7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panePlayer7Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jplayername6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panePlayer7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        panePlayer7Layout.setVerticalGroup(
-            panePlayer7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panePlayer7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jplayername6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
-        );
-
-        Player_Panes.add(panePlayer7, "card3");
-
-        jTAcards7.setColumns(20);
-        jTAcards7.setRows(5);
-        jScrollPane9.setViewportView(jTAcards7);
-
-        jplayername7.setText("jLabel3");
-
-        javax.swing.GroupLayout panePlayer8Layout = new javax.swing.GroupLayout(panePlayer8);
-        panePlayer8.setLayout(panePlayer8Layout);
-        panePlayer8Layout.setHorizontalGroup(
-            panePlayer8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panePlayer8Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jplayername7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panePlayer8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        panePlayer8Layout.setVerticalGroup(
-            panePlayer8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panePlayer8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jplayername7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
-        );
-
-        Player_Panes.add(panePlayer8, "card2");
-
-        jTAcards8.setColumns(20);
-        jTAcards8.setRows(5);
-        jScrollPane10.setViewportView(jTAcards8);
-
-        jplayername8.setText("jLabel3");
-
-        javax.swing.GroupLayout panePlayer9Layout = new javax.swing.GroupLayout(panePlayer9);
-        panePlayer9.setLayout(panePlayer9Layout);
-        panePlayer9Layout.setHorizontalGroup(
-            panePlayer9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panePlayer9Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jplayername8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panePlayer9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        panePlayer9Layout.setVerticalGroup(
-            panePlayer9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panePlayer9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jplayername8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
-        );
-
-        Player_Panes.add(panePlayer9, "card10");
-
         viewPlayerComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewPlayerComboBoxActionPerformed(evt);
@@ -648,23 +254,17 @@ private int playerTurn=0;
                     .addGroup(setupPaneLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(viewPlayerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(setupPaneLayout.createSequentialGroup()
-                                .addComponent(Player_Panes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane12)
-                                .addGap(54, 54, 54))
-                            .addGroup(setupPaneLayout.createSequentialGroup()
-                                .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(viewPlayerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(setupPaneLayout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(playerCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton2)
-                                        .addGap(124, 124, 124)
-                                        .addComponent(jButton3)))
-                                .addGap(0, 178, Short.MAX_VALUE)))))
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(playerCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2)
+                                .addGap(124, 124, 124)
+                                .addComponent(jButton3))
+                            .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 792, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 8, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         setupPaneLayout.setVerticalGroup(
@@ -679,9 +279,7 @@ private int playerTurn=0;
                 .addGap(65, 65, 65)
                 .addComponent(viewPlayerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Player_Panes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
@@ -813,145 +411,7 @@ player p = playerPool.get(viewPlayerComboBox.getSelectedIndex());
                                                                                 + "");
         answer.setText(a);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
-   private void showPan()
-   {
-            int temp=viewPlayerComboBox.getSelectedIndex();
-     switch (temp)
-     {
-         case 0:
-         {panePlayer1.setVisible(false);
-         panePlayer2.setVisible(false);
-         panePlayer3.setVisible(false);
-         panePlayer4.setVisible(false);
-         panePlayer5.setVisible(false);
-         panePlayer6.setVisible(false);
-         panePlayer7.setVisible(false);
-         panePlayer8.setVisible(false);
-         panePlayer9.setVisible(false);
-         panePlayer10.setVisible(true);
- 
-             break;
-         }
-         case 1:
-         {panePlayer1.setVisible(true);
-         panePlayer2.setVisible(false);
-         panePlayer3.setVisible(false);
-         panePlayer4.setVisible(false);
-         panePlayer5.setVisible(false);
-         panePlayer6.setVisible(false);
-         panePlayer7.setVisible(false);
-         panePlayer8.setVisible(false);
-         panePlayer9.setVisible(false);
-         panePlayer10.setVisible(false);
-             break;
-         }
-         case 2:
-         {panePlayer1.setVisible(false);
-         panePlayer2.setVisible(true);
-         panePlayer3.setVisible(false);
-         panePlayer4.setVisible(false);
-         panePlayer5.setVisible(false);
-         panePlayer6.setVisible(false);
-         panePlayer7.setVisible(false);
-         panePlayer8.setVisible(false);
-         panePlayer9.setVisible(false);
-         panePlayer10.setVisible(false);
-             break;
-         }
-         case 3:
-         {panePlayer1.setVisible(false);
-         panePlayer2.setVisible(false);
-         panePlayer3.setVisible(true);
-         panePlayer4.setVisible(false);
-         panePlayer5.setVisible(false);
-         panePlayer6.setVisible(false);
-         panePlayer7.setVisible(false);
-         panePlayer8.setVisible(false);
-         panePlayer9.setVisible(false);
-         panePlayer10.setVisible(false);
-             break;
-         }
-         case 4:
-         {panePlayer1.setVisible(false);
-         panePlayer2.setVisible(false);
-         panePlayer3.setVisible(false);
-         panePlayer4.setVisible(true);
-         panePlayer5.setVisible(false);
-         panePlayer6.setVisible(false);
-         panePlayer7.setVisible(false);
-         panePlayer8.setVisible(false);
-         panePlayer9.setVisible(false);
-         panePlayer10.setVisible(false);
-             break;
-         }
-         case 5:
-         {panePlayer1.setVisible(false);
-         panePlayer2.setVisible(false);
-         panePlayer3.setVisible(false);
-         panePlayer4.setVisible(false);
-         panePlayer5.setVisible(true);
-         panePlayer6.setVisible(false);
-         panePlayer7.setVisible(false);
-         panePlayer8.setVisible(false);
-         panePlayer9.setVisible(false);
-         panePlayer10.setVisible(false);
-             break;
-         }
-         case 6:
-         {panePlayer1.setVisible(false);
-         panePlayer2.setVisible(false);
-         panePlayer3.setVisible(false);
-         panePlayer4.setVisible(false);
-         panePlayer5.setVisible(false);
-         panePlayer6.setVisible(true);
-         panePlayer7.setVisible(false);
-         panePlayer8.setVisible(false);
-         panePlayer9.setVisible(false);
-         panePlayer10.setVisible(false);
-             break;
-         }
-         case 7:
-         {panePlayer1.setVisible(false);
-         panePlayer2.setVisible(false);
-         panePlayer3.setVisible(false);
-         panePlayer4.setVisible(false);
-         panePlayer5.setVisible(false);
-         panePlayer6.setVisible(false);
-         panePlayer7.setVisible(true);
-         panePlayer8.setVisible(false);
-         panePlayer9.setVisible(false);
-         panePlayer10.setVisible(false);
-             break;
-         }
-         case 8:
-         {panePlayer1.setVisible(false);
-         panePlayer2.setVisible(false);
-         panePlayer3.setVisible(false);
-         panePlayer4.setVisible(false);
-         panePlayer5.setVisible(false);
-         panePlayer6.setVisible(false);
-         panePlayer7.setVisible(false);
-         panePlayer8.setVisible(true);
-         panePlayer9.setVisible(false);
-         panePlayer10.setVisible(false);
-             break;
-         }
-         case 9:
-         {panePlayer1.setVisible(false);
-         panePlayer2.setVisible(false);
-         panePlayer3.setVisible(false);
-         panePlayer4.setVisible(false);
-         panePlayer5.setVisible(false);
-         panePlayer6.setVisible(false);
-         panePlayer7.setVisible(false);
-         panePlayer8.setVisible(false);
-         panePlayer9.setVisible(true);
-         panePlayer10.setVisible(false);
-             break;
-         }
-     }
-   }
-    
+   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -985,7 +445,6 @@ player p = playerPool.get(viewPlayerComboBox.getSelectedIndex());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Player_Panes;
     private javax.swing.JTextArea answer;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -999,48 +458,8 @@ player p = playerPool.get(viewPlayerComboBox.getSelectedIndex());
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane10;
-    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTextArea jTAcards;
-    private javax.swing.JTextArea jTAcards1;
-    private javax.swing.JTextArea jTAcards2;
-    private javax.swing.JTextArea jTAcards3;
-    private javax.swing.JTextArea jTAcards4;
-    private javax.swing.JTextArea jTAcards5;
-    private javax.swing.JTextArea jTAcards6;
-    private javax.swing.JTextArea jTAcards7;
-    private javax.swing.JTextArea jTAcards8;
-    private javax.swing.JTextArea jTAcards9;
-    private javax.swing.JLabel jplayername;
-    private javax.swing.JLabel jplayername1;
-    private javax.swing.JLabel jplayername2;
-    private javax.swing.JLabel jplayername3;
-    private javax.swing.JLabel jplayername4;
-    private javax.swing.JLabel jplayername5;
-    private javax.swing.JLabel jplayername6;
-    private javax.swing.JLabel jplayername7;
-    private javax.swing.JLabel jplayername8;
-    private javax.swing.JLabel jplayername9;
     private javax.swing.JTextArea jta_playablecards;
-    private javax.swing.JPanel panePlayer1;
-    private javax.swing.JPanel panePlayer10;
-    private javax.swing.JPanel panePlayer2;
-    private javax.swing.JPanel panePlayer3;
-    private javax.swing.JPanel panePlayer4;
-    private javax.swing.JPanel panePlayer5;
-    private javax.swing.JPanel panePlayer6;
-    private javax.swing.JPanel panePlayer7;
-    private javax.swing.JPanel panePlayer8;
-    private javax.swing.JPanel panePlayer9;
     private javax.swing.JComboBox<String> playerCombobox;
     private javax.swing.JPanel setupPane;
     private javax.swing.JComboBox<String> viewPlayerComboBox;

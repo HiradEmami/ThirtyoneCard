@@ -12,8 +12,8 @@ public class player {
    public double handvalue;
    public boolean threeOfsameSuit;
    public boolean twoOfSameSuit;
-   private int twosuite;//the position of one of the cards that shapes the two suit
-   private int twokind;//the position of one of the cards that shapes the two kind
+   private card twosuite;//the position of one of the cards that shapes the two suit
+   private card twokind;//the position of one of the cards that shapes the two kind
    public boolean threeOfAKind;
    public boolean twoOfAKind;
    public card highestCard;
@@ -21,6 +21,7 @@ public class player {
    public  int playerNumber;
    public ArrayList <cardKnowledge> knowsCard;
    public playerHighSuitKnowledge [] knowsPlayerhighSuit;
+   
    
 
     public player(String argName, card argFirst, card argSecond, card argThird) {
@@ -39,6 +40,15 @@ public class player {
           knowsCard.add(new cardKnowledge(this, hand[2]));
           knowsCard.get(2).setType("self");
           
+    updatePlayerEntireKnowledge();
+          
+        
+        
+    }
+
+    public void updatePlayerEntireKnowledge()
+    {
+ 
           setThreeOfAKind();
        if(!threeOfAKind){setTwoOfAKind();} else{ twoOfAKind=false;}
        
@@ -59,9 +69,9 @@ public class player {
        System.out.println("Player "+name +"'s highsest card is :"+highestCard.name);
         System.out.println("Player "+name +"'s highest suit is :"+highestSuit);
         calculateHandValue();
-        
     }
-
+    
+    
     public void setThreeOfsameSuit() {
         if(hand[0].suit.equals(hand[1].suit) && hand[1].suit.equals(hand[2].suit))
         {this.threeOfsameSuit=true; this.highestSuit=hand[1].suit;}
@@ -72,8 +82,8 @@ public class player {
     public void setTwoOfSameSuit(){
         if(hand[0].suit.equals(hand[1].suit) || hand[1].suit.equals(hand[2].suit) || hand[0].suit.equals(hand[2].suit))
         {this.twoOfSameSuit=true; 
-        if(hand[1].suit.equals(hand[2].suit)){this.highestSuit=hand[1].suit;this.twosuite=1;}
-        else{this.highestSuit=hand[0].suit;this.twosuite=0;}
+        if(hand[1].suit.equals(hand[2].suit)){this.highestSuit=hand[1].suit;this.twosuite=hand[1];}
+        else{this.highestSuit=hand[0].suit;this.twosuite=hand[0];}
         }
         else
         {this.twoOfSameSuit=false;}
@@ -188,9 +198,9 @@ public class player {
            if(hand[0].type.equals(hand[1].type) || hand[1].type.equals(hand[2].type) || hand[0].type.equals(hand[2].type))
            {
               this.twoOfAKind=true;
-              if(hand[0].type.equals(hand[1].type)){this.twokind=0; highestSuit=hand[1].suit;}
+              if(hand[0].type.equals(hand[1].type)){ this.twokind=this.hand[1]; highestSuit=hand[1].suit;}
               else{
-                twokind=2;
+                this.twokind=this.hand[2];
                 highestSuit=hand[2].suit;
               }
               
@@ -306,4 +316,28 @@ public class player {
         knowsCard.get(knowsCard.size()-1).setType("widow");
        }
    }
+   
+  public void setPlayerIntention()
+  {
+      if(this.handvalue==31)
+      {
+          //we put intention to call / fold
+      }else{
+          if(threeOfAKind)
+          {
+              //we check the widow's deck to see if we can make any improvement
+              //if we couldn't then we check if we can assume we can win
+              //if we could make assumption, then we fold , if not we block 
+          }else{
+              if(twoOfAKind && !twoOfSameSuit)
+              {
+                  
+              }else{
+                  
+              }
+          }
+      }
+  }
+   
+ 
 }

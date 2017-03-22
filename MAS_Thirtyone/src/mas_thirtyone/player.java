@@ -20,6 +20,7 @@ public class player {
    public String highestSuit;
    public  int playerNumber;
    public ArrayList <cardKnowledge> knowsCard;
+   public playerHighSuitKnowledge [] knowsPlayerhighSuit;
    
 
     public player(String argName, card argFirst, card argSecond, card argThird) {
@@ -32,8 +33,11 @@ public class player {
         hand[2]=argThird;
         
         knowsCard.add(new cardKnowledge(this, hand[0]));
+        knowsCard.get(0).setType("self");
          knowsCard.add(new cardKnowledge(this, hand[1]));
+         knowsCard.get(1).setType("self");
           knowsCard.add(new cardKnowledge(this, hand[2]));
+          knowsCard.get(2).setType("self");
           
           setThreeOfAKind();
        if(!threeOfAKind){setTwoOfAKind();} else{ twoOfAKind=false;}
@@ -272,4 +276,34 @@ public class player {
         }
         System.out.println("Player "+name +"'s hand value is :"+handvalue);
     }
+    
+    public void setknowsPlayerHighsuit(int argnumberOfPlayers){
+        
+    }
+    
+   public void updateWidowKnowledge(player argWidow)
+   {
+       for(int y=0; y<=2;y++)
+       {
+           //removing previous knowledge 
+        for(int i=0;i<=knowsCard.size()-1;i++)
+        {
+            if(knowsCard.get(i).targetPlayer.name.equals(argWidow.name))
+            {
+                //System.out.println(knowsCard.get(i).targetPlayer.name+" && "+argWidow.name);
+                //System.out.println(knowsCard.get(i).targetCard.name+" && "+argWidow.hand[y].name);
+                if(knowsCard.get(i).targetCard.name.equals(argWidow.hand[y].name))
+                {
+                     
+                 knowsCard.remove(i);
+                    System.out.println("outdated Knoweledge was removed");
+                  break;
+                }
+            }
+        }
+        
+        knowsCard.add(new cardKnowledge(argWidow, argWidow.hand[y]));
+        knowsCard.get(knowsCard.size()-1).setType("widow");
+       }
+   }
 }

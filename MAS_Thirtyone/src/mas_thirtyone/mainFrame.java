@@ -66,25 +66,32 @@ private int playerTurn=0;
          //update combobox of viewing player
         viewPlayerComboBox.removeAllItems(); //removing all the boxes 
         viewPlayerComboBox.setVisible(true);
-        viewPlayerComboBox.addItem("Widow");
+        
         //create players
         for(int i=0; i<=numberofPlayer;i++)
         {   //creating random player
-            card temp1= getArandomCard();
+//            card temp1= getArandomCard();
+//            
+//            card temp2= getArandomCard();
+//            
+//            card temp3= getArandomCard();
             
-            card temp2=getArandomCard();
-            
-            card temp3=getArandomCard();
-            
-            playerPool.add(new player("p"+(i+1), temp1, temp2, temp3));
+            playerPool.add(new player("p"+(i+1), getArandomCard(), getArandomCard(), getArandomCard()));
             playerPool.get(i).setPlayerNumber(i);
             viewPlayerComboBox.addItem(playerPool.get(i).name);
         }
-         card temp1= getArandomCard();
-            card temp2=getArandomCard();
-            card temp3=getArandomCard();
-         playerPool.add(new player("widow", temp1, temp2,temp3));
+        viewPlayerComboBox.addItem("Widow");
+//         card temp1= getArandomCard();
+//            card temp2=getArandomCard();
+//            card temp3=getArandomCard();
+         playerPool.add(new player("widow", getArandomCard(), getArandomCard(),getArandomCard()));
          playerPool.get(playerPool.size()-1).setPlayerNumber(100);
+         
+        for(int z=0;z<=playerPool.size()-1;z++)
+        {
+            playerPool.get(z).updateWidowKnowledge(playerPool.get(playerPool.size()-1));
+        }
+        
         
 
     }
@@ -99,6 +106,8 @@ private int playerTurn=0;
         
         return temp;
     }
+    
+  
     
     private void setCardPool()
     {
@@ -228,7 +237,7 @@ private int playerTurn=0;
         answer.setRows(5);
         jScrollPane12.setViewportView(answer);
 
-        jButton3.setText("jButton3");
+        jButton3.setText("show");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -254,15 +263,16 @@ private int playerTurn=0;
                     .addGroup(setupPaneLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(viewPlayerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(setupPaneLayout.createSequentialGroup()
+                                .addComponent(viewPlayerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)
+                                .addComponent(jButton3))
                             .addGroup(setupPaneLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(playerCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2)
-                                .addGap(124, 124, 124)
-                                .addComponent(jButton3))
+                                .addComponent(jButton2))
                             .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 792, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 8, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -274,10 +284,11 @@ private int playerTurn=0;
                 .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(playerCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2)
+                    .addComponent(jButton2))
+                .addGap(62, 62, 62)
+                .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(viewPlayerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3))
-                .addGap(65, 65, 65)
-                .addComponent(viewPlayerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
@@ -396,7 +407,7 @@ private int playerTurn=0;
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 player p = playerPool.get(viewPlayerComboBox.getSelectedIndex());
-      System.out.println("Testing for player :"+p.name);
+      String b =("Testing for player :"+p.name);
         String a =("First card: "+p.hand[0].name+" /type:"+p.hand[0].type+"/value: "+p.hand[0].value+" /suit: "+p.hand[0].suit+" \n"
                 + "Second card: "+p.hand[1].name+" /type: "+p.hand[1].type+" /value: "+p.hand[1].value+" /suit: "+p.hand[1].suit+" \n"
                         + "Third card: "+p.hand[2].name+" /type:"+p.hand[2].type+"/value: "+p.hand[2].value+" /suit: "+p.hand[2].suit+" \n"
@@ -409,7 +420,13 @@ player p = playerPool.get(viewPlayerComboBox.getSelectedIndex());
                                                                 + "Does p1 Knows he has "+p.hand[0].name+"? "+ p.doesKnowCard(p, p.hand[0])+"\n"
                                                                         + "hand's value "+p.handvalue+""
                                                                                 + "");
-        answer.setText(a);        // TODO add your handling code here:
+        
+        answer.setText(b+"\n"+a);        // TODO add your handling code here:
+        for (int i=0; i<=p.knowsCard.size()-1;i++)
+        {
+           answer.setText(answer.getText()+"\n Player "+p.name+" knows that player "
+                   +p.knowsCard.get(i).targetPlayer.name+ " has the card : "+p.knowsCard.get(i).targetCard.name);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
    
     public static void main(String args[]) {

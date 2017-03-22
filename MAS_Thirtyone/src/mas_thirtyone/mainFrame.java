@@ -191,6 +191,7 @@ private int playerTurn=0;
         jScrollPane12 = new javax.swing.JScrollPane();
         answer = new javax.swing.JTextArea();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -216,7 +217,7 @@ private int playerTurn=0;
 
         jLabel1.setText("All the cards in cardpool");
 
-        playerCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2 players", "3 players", "4 players", "5 players", "6 players", "7 players", "8 players", "9 players" }));
+        playerCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2 players", "3 players", "4 players", "5 players", "6 players", "7 players" }));
 
         jLabel2.setText("Select the number of players:");
 
@@ -241,6 +242,13 @@ private int playerTurn=0;
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Make Sample ");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -276,6 +284,10 @@ private int playerTurn=0;
                             .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 792, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 8, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addGap(194, 194, 194))
         );
         setupPaneLayout.setVerticalGroup(
             setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,7 +297,9 @@ private int playerTurn=0;
                     .addComponent(jLabel2)
                     .addComponent(playerCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
-                .addGap(62, 62, 62)
+                .addGap(10, 10, 10)
+                .addComponent(jButton4)
+                .addGap(29, 29, 29)
                 .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(viewPlayerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3))
@@ -428,7 +442,36 @@ player p = playerPool.get(viewPlayerComboBox.getSelectedIndex());
                    +p.knowsCard.get(i).targetPlayer.name+ " has the card : "+p.knowsCard.get(i).targetCard.name);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+player selectedPlayer = playerPool.get(viewPlayerComboBox.getSelectedIndex());
+        actionExchangeCard(selectedPlayer, selectedPlayer.hand[0], playerPool.get(playerPool.size()-1).hand[0]);
+
+    }//GEN-LAST:event_jButton4ActionPerformed
    
+    
+    private void actionExchangeCard(player argPlayer, card argPlayercard, card argWidowcard){
+        int playerNumber=0;
+        for(int i=0;i<=playerPool.size()-1;i++)
+        {
+            if(playerPool.get(i).name.equals(argPlayer.name))
+            {
+                playerNumber=i;
+                break;
+            }
+        }
+        //updating widow cards
+        playerPool.get(playerPool.size()-1).swapCard(argWidowcard, argPlayercard);
+        System.out.println("widow has to lose : "+argWidowcard.name +"and pick up "+argPlayercard.name);
+        playerPool.get(playerPool.size()-1).updateWidowKnowledge(playerPool.get(playerPool.size()-1));
+        playerPool.get(playerPool.size()-1).updatePlayerEntireKnowledge();
+        //update player cards
+        playerPool.get(playerNumber).swapCard(argPlayercard, argWidowcard);
+        playerPool.get(playerNumber).updateWidowKnowledge(playerPool.get(playerPool.size()-1));
+        playerPool.get(playerNumber).updatePlayerEntireKnowledge();
+        System.out.println(playerPool.get(playerNumber).name+" Exchanged with widow such that it dropped "+playerPool.get(playerPool.size()-1).hand[0].name
+        +" that meant to be "+argPlayercard.name+ " While it wanted to pick  "+argWidowcard.name+" and actually picked "+playerPool.get(playerNumber).hand[0].name);
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -466,6 +509,7 @@ player p = playerPool.get(viewPlayerComboBox.getSelectedIndex());
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

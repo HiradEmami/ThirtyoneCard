@@ -20,7 +20,7 @@ public class player {
    public String highestSuit;
    public  int playerNumber;
    public ArrayList <cardKnowledge> knowsCard;
-   public playerHighSuitKnowledge [] knowsPlayerhighSuit;
+   public  ArrayList <playerHighSuitKnowledge>knowsPlayerhighSuit;
    
    
 
@@ -28,6 +28,7 @@ public class player {
         this.name=argName;
         this.hand= new card[3];
         this.knowsCard= new ArrayList<cardKnowledge>();
+        this.knowsPlayerhighSuit= new ArrayList<playerHighSuitKnowledge>();
         
         hand[0]=argFirst;
         hand[1]=argSecond;
@@ -275,7 +276,17 @@ public class player {
     public  void calculateHandValue()
     {
         if(threeOfAKind){this.handvalue = 30.5;}
-        else{handvalue=0;
+        else{if(twoOfAKind){
+        handvalue=0;
+        for(int i=0;i<=2;i++)
+        {
+            if(hand[i].type.equals(twokind.type))
+            { handvalue = handvalue+ (double)(hand[i].value);
+            }
+        }
+        }
+        else{
+            handvalue=0;
             for(int i=0; i<=2;i++)
             {
                 if(hand[i].suit.equals(highestSuit))
@@ -284,37 +295,50 @@ public class player {
                 }
             }
         }
+        }
         System.out.println("Player "+name +"'s hand value is :"+handvalue);
     }
     
-    public void setknowsPlayerHighsuit(int argnumberOfPlayers){
-        
-    }
+   
     
    public void updateWidowKnowledge(player argWidow)
    {
-       for(int y=0; y<=2;y++)
+//       for(int y=0; y<=2;y++)
+//       {
+//           //removing previous knowledge 
+//        for(int i=0;i<=knowsCard.size()-1;i++)
+//        {
+//            if(knowsCard.get(i).targetPlayer.name.equals(argWidow.name))
+//            {
+//                //System.out.println(knowsCard.get(i).targetPlayer.name+" && "+argWidow.name);
+//                //System.out.println(knowsCard.get(i).targetCard.name+" && "+argWidow.hand[y].name);
+//                if(knowsCard.get(i).targetCard.name.equals(argWidow.hand[y].name))
+//                {
+//                     
+//                 knowsCard.remove(i);
+//                    System.out.println("outdated Knoweledge was removed");
+//                  break;
+//                }
+//            }
+//        }
+//        
+//        knowsCard.add(new cardKnowledge(argWidow, argWidow.hand[y]));
+//        knowsCard.get(knowsCard.size()-1).setType("widow");
+//       }
+       
+       for(int i=0;i<=knowsCard.size()-1;i++)
        {
-           //removing previous knowledge 
-        for(int i=0;i<=knowsCard.size()-1;i++)
-        {
-            if(knowsCard.get(i).targetPlayer.name.equals(argWidow.name))
-            {
-                //System.out.println(knowsCard.get(i).targetPlayer.name+" && "+argWidow.name);
-                //System.out.println(knowsCard.get(i).targetCard.name+" && "+argWidow.hand[y].name);
-                if(knowsCard.get(i).targetCard.name.equals(argWidow.hand[y].name))
-                {
-                     
-                 knowsCard.remove(i);
-                    System.out.println("outdated Knoweledge was removed");
-                  break;
-                }
-            }
-        }
-        
-        knowsCard.add(new cardKnowledge(argWidow, argWidow.hand[y]));
-        knowsCard.get(knowsCard.size()-1).setType("widow");
+           if(knowsCard.get(i).targetPlayer.name.equals(argWidow.name))
+           {
+               knowsCard.remove(i);
+           }
        }
+       knowsCard.add(new cardKnowledge(argWidow, argWidow.hand[0]));
+       knowsCard.get(knowsCard.size()-1).setType("widow");
+       knowsCard.add(new cardKnowledge(argWidow, argWidow.hand[1]));
+       knowsCard.get(knowsCard.size()-1).setType("widow");
+       knowsCard.add(new cardKnowledge(argWidow, argWidow.hand[2]));
+       knowsCard.get(knowsCard.size()-1).setType("widow");
    }
    
   public void setPlayerIntention()
@@ -339,5 +363,16 @@ public class player {
       }
   }
    
+  
+  public void updateKnowledgeplayerhighsuite(player target, String suit)
+  {
+      for (int i=0; i<=knowsPlayerhighSuit.size()-1;i++){
+          if(target.name.equals(knowsPlayerhighSuit.get(i).targetPlayer.name))
+          {
+              knowsPlayerhighSuit.remove(i);
+          }
+      }
+      knowsPlayerhighSuit.add(new playerHighSuitKnowledge(target, suit));
+  }
  
 }

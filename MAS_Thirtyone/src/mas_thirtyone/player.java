@@ -276,7 +276,8 @@ public class player {
     public  void calculateHandValue()
     {
         if(threeOfAKind){this.handvalue = 30.5;}
-        else{if(twoOfAKind){
+        //the following is if the hand value is determined by two of a kind
+        else{if(twoOfAKind && !twoOfSameSuit){
         handvalue=0;
         for(int i=0;i<=2;i++)
         {

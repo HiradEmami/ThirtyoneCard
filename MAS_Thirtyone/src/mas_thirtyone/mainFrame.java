@@ -469,8 +469,8 @@ player selectedPlayer = playerPool.get(viewPlayerComboBox.getSelectedIndex());
         playerPool.get(playerNumber).swapCard(argPlayercard, argWidowcard);
         playerPool.get(playerNumber).updateWidowKnowledge(playerPool.get(playerPool.size()-1));
         playerPool.get(playerNumber).updatePlayerEntireKnowledge();
-        System.out.println(playerPool.get(playerNumber).name+" Exchanged with widow such that it dropped "+playerPool.get(playerPool.size()-1).hand[0].name
-        +" that meant to be "+argPlayercard.name+ " While it wanted to pick  "+argWidowcard.name+" and actually picked "+playerPool.get(playerNumber).hand[0].name);
+      //  System.out.println(playerPool.get(playerNumber).name+" Exchanged with widow such that it dropped "+playerPool.get(playerPool.size()-1).hand[0].name
+       // +" that meant to be "+argPlayercard.name+ " While it wanted to pick  "+argWidowcard.name+" and actually picked "+playerPool.get(playerNumber).hand[0].name);
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

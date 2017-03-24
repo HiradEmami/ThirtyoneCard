@@ -21,7 +21,8 @@ public class intention {
         this.widowCard = widowCard;
     }
 
-    public intention() {
+    public intention(String argType) {
+        this.type=argType;
     }
     
 

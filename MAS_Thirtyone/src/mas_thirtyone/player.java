@@ -22,7 +22,7 @@ public class player {
    public ArrayList <cardKnowledge> knowsCard;
    public  ArrayList <playerHighSuitKnowledge>knowsPlayerhighSuit;
    public intention playerDecision;
-   public int NumberOfKnownPlayer; //it's the number of players, that we know at least one card 
+  
    
    
    
@@ -32,6 +32,7 @@ public class player {
         this.hand= new card[3];
         this.knowsCard= new ArrayList<cardKnowledge>();
         this.knowsPlayerhighSuit= new ArrayList<playerHighSuitKnowledge>();
+        this.playerDecision=new intention("self");
         
         hand[0]=argFirst;
         hand[1]=argSecond;
@@ -268,6 +269,17 @@ public class player {
         }
         
         knowsCard.add(new cardKnowledge(p, argPickd));
+        if(p.name.equals(this.name))
+        {
+          knowsCard.get(knowsCard.size()-1).type="self";
+        }else{
+           if(p.name.equals("widow"))
+        {
+          knowsCard.get(knowsCard.size()-1).type="widow";
+        }else{
+          knowsCard.get(knowsCard.size()-1).type="others";  
+        } 
+        }
         
         
     }
@@ -334,14 +346,7 @@ public class player {
 //        knowsCard.add(new cardKnowledge(argWidow, argWidow.hand[y]));
 //        knowsCard.get(knowsCard.size()-1).setType("widow");
 //       }
-       
-       for(int i=0;i<=knowsCard.size()-1;i++)
-       {
-           if(knowsCard.get(i).targetPlayer.name.equals(argWidow.name))
-           {
-               knowsCard.remove(i);
-           }
-       }
+       removeWidow();
        knowsCard.add(new cardKnowledge(argWidow, argWidow.hand[0]));
        knowsCard.get(knowsCard.size()-1).setType("widow");
        knowsCard.add(new cardKnowledge(argWidow, argWidow.hand[1]));
@@ -387,7 +392,31 @@ public class player {
       }
   }
   
-
+private void removeWidow()
+{
+   boolean remains=true;
+   while(remains)
+   {remains=false;
+         for(int i=0;i<=knowsCard.size()-1;i++)
+    {
+        System.out.println(knowsCard.get(i).targetPlayer.name+" "+i+" "+knowsCard.size());
+        if(knowsCard.get(i).targetPlayer.name.equals("widow"))
+        {
+            knowsCard.remove(i);
+            System.out.println("removed");
+        }
+    }
+           for(int i=0;i<=knowsCard.size()-1;i++)
+    {
+        System.out.println(knowsCard.get(i).targetPlayer.name+" "+i+" "+knowsCard.size());
+        if(knowsCard.get(i).targetPlayer.name.equals("widow"))
+        {
+            remains=true;
+        }
+    }
+         
+   }
+}
   
   
   private boolean checkWidowForTOK()

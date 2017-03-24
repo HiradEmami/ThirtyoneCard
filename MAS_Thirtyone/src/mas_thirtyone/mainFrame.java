@@ -202,9 +202,10 @@ private boolean gameInProgress=false;
         showButton = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        gameLog_TA = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -269,13 +270,15 @@ private boolean gameInProgress=false;
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        gameLog_TA.setColumns(20);
+        gameLog_TA.setRows(5);
+        jScrollPane2.setViewportView(gameLog_TA);
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jScrollPane3.setViewportView(jTextArea2);
+
+        jLabel1.setText("Game Log:");
 
         javax.swing.GroupLayout setupPaneLayout = new javax.swing.GroupLayout(setupPane);
         setupPane.setLayout(setupPaneLayout);
@@ -290,11 +293,6 @@ private boolean gameInProgress=false;
             .addGroup(setupPaneLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(setupPaneLayout.createSequentialGroup()
-                        .addComponent(viewPlayerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(showButton)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(setupPaneLayout.createSequentialGroup()
                         .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(setupPaneLayout.createSequentialGroup()
@@ -319,8 +317,15 @@ private boolean gameInProgress=false;
                                 .addContainerGap())))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10))))
+                        .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10))
+                    .addGroup(setupPaneLayout.createSequentialGroup()
+                        .addComponent(viewPlayerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(showButton)
+                        .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton4)
@@ -351,7 +356,9 @@ private boolean gameInProgress=false;
                     .addGroup(setupPaneLayout.createSequentialGroup()
                         .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)))
-                .addComponent(jLabel_CardPool)
+                .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_CardPool)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
@@ -600,15 +607,11 @@ public static void openWebpage(URL url) {
     }
 } 
     private void actionExchangeCard(player argPlayer, card argPlayercard, card argWidowcard){
-        int playerNumber=0;
-        for(int i=0;i<=playerPool.size()-1;i++)
-        {
-            if(playerPool.get(i).name.equals(argPlayer.name))
-            {
-                playerNumber=i;
-                break;
-            }
-        }
+      if(playerPool.get(viewPlayerComboBox.getSelectedIndex()).name.equals("widow"))
+      {
+        JOptionPane.showMessageDialog(null, "You selected widow");
+      }else{
+           int playerNumber = argPlayer.playerNumber;
         //updating widow cards
         playerPool.get(playerPool.size()-1).swapCard(argWidowcard, argPlayercard);
         System.out.println("widow has to lose : "+argWidowcard.name +"and pick up "+argPlayercard.name);
@@ -616,10 +619,24 @@ public static void openWebpage(URL url) {
         playerPool.get(playerPool.size()-1).updatePlayerEntireKnowledge();
         //update player cards
         playerPool.get(playerNumber).swapCard(argPlayercard, argWidowcard);
-        playerPool.get(playerNumber).updateWidowKnowledge(playerPool.get(playerPool.size()-1));
         playerPool.get(playerNumber).updatePlayerEntireKnowledge();
+        playerPool.get(playerNumber).updateWidowKnowledge(playerPool.get(playerPool.size()-1));
+        
+        for(int i=0;i<=playerPool.size()-2;i++)
+        {
+           if(playerPool.get(i).name.equals(playerPool.get(playerNumber).name)){
+              //skip 
+           }else{
+                playerPool.get(i).updateKnowledgeAfterExchange(playerPool.get(playerNumber), argPlayercard, argWidowcard);
+                 playerPool.get(i).updateWidowKnowledge(playerPool.get(playerPool.size()-1));
+           }
+        }
+        
       //  System.out.println(playerPool.get(playerNumber).name+" Exchanged with widow such that it dropped "+playerPool.get(playerPool.size()-1).hand[0].name
        // +" that meant to be "+argPlayercard.name+ " While it wanted to pick  "+argWidowcard.name+" and actually picked "+playerPool.get(playerNumber).hand[0].name);
+    gameLog_TA.setText(gameLog_TA.getText()+"\n=================\n Player "+playerPool.get(playerNumber).name +" Swapped the Drpped the card "+argPlayercard.name+" and picked up "+argWidowcard.name);
+    
+      }
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -655,11 +672,13 @@ public static void openWebpage(URL url) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea answer;
+    private javax.swing.JTextArea gameLog_TA;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel_CardPool;
     private javax.swing.JPanel jPanel1;
@@ -672,7 +691,6 @@ public static void openWebpage(URL url) {
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jta_playablecards;
     private javax.swing.JComboBox<String> playerCombobox;

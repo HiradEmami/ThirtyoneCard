@@ -75,6 +75,7 @@ private boolean gameInProgress=false;
          //update combobox of viewing player
         viewPlayerComboBox.removeAllItems(); //removing all the boxes 
         viewPlayerComboBox.setVisible(true);
+        gameLog_TA.setText(gameLog_TA.getText()+"=================\n"+"Selected Number of players : "+numberofPlayer);
         
         //create players
         for(int i=0; i<=numberofPlayer;i++)
@@ -87,6 +88,8 @@ private boolean gameInProgress=false;
             
             playerPool.add(new player("p"+(i+1), getArandomCard(), getArandomCard(), getArandomCard()));
             playerPool.get(i).setPlayerNumber(i);
+            gameLog_TA.setText(gameLog_TA.getText()+"\nPlayer "+playerPool.get(i).name+" is created");
+            gameLog_TA.setText(gameLog_TA.getText()+"\nCards after sorting "+playerPool.get(i).hand[0].name+playerPool.get(i).hand[1].name+playerPool.get(i).hand[2].name+"\n");
             viewPlayerComboBox.addItem(playerPool.get(i).name);
         }
         viewPlayerComboBox.addItem("Widow");
@@ -204,8 +207,10 @@ private boolean gameInProgress=false;
         jScrollPane2 = new javax.swing.JScrollPane();
         gameLog_TA = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        Knowledge = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -274,11 +279,15 @@ private boolean gameInProgress=false;
         gameLog_TA.setRows(5);
         jScrollPane2.setViewportView(gameLog_TA);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane3.setViewportView(jTextArea2);
+        Knowledge.setColumns(20);
+        Knowledge.setRows(5);
+        jScrollPane3.setViewportView(Knowledge);
 
         jLabel1.setText("Game Log:");
+
+        jLabel3.setText("Select a Player: ");
+
+        jLabel4.setText("Player knowledge");
 
         javax.swing.GroupLayout setupPaneLayout = new javax.swing.GroupLayout(setupPane);
         setupPane.setLayout(setupPaneLayout);
@@ -293,28 +302,6 @@ private boolean gameInProgress=false;
             .addGroup(setupPaneLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(setupPaneLayout.createSequentialGroup()
-                        .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(setupPaneLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(playerCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(setupPaneLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(jButton1)
-                                        .addGap(51, 51, 51))
-                                    .addGroup(setupPaneLayout.createSequentialGroup()
-                                        .addComponent(startButton)
-                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,14 +309,39 @@ private boolean gameInProgress=false;
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10))
                     .addGroup(setupPaneLayout.createSequentialGroup()
-                        .addComponent(viewPlayerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(showButton)
-                        .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton4)
-                .addGap(194, 194, 194))
+                        .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(setupPaneLayout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(playerCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, setupPaneLayout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(viewPlayerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(showButton)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
+                                .addGap(0, 137, Short.MAX_VALUE)
+                                .addComponent(jButton1)
+                                .addGap(51, 51, 51))
+                            .addGroup(setupPaneLayout.createSequentialGroup()
+                                .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(setupPaneLayout.createSequentialGroup()
+                                        .addComponent(startButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton4))
+                                    .addGroup(setupPaneLayout.createSequentialGroup()
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addContainerGap())
+                            .addGroup(setupPaneLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         setupPaneLayout.setVerticalGroup(
             setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,19 +350,23 @@ private boolean gameInProgress=false;
                 .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(playerCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(startButton))
-                .addGap(10, 10, 10)
-                .addComponent(jButton4)
-                .addGap(29, 29, 29)
-                .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(viewPlayerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(showButton))
+                    .addComponent(startButton)
+                    .addComponent(jButton4))
+                .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(setupPaneLayout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(viewPlayerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(showButton)
+                            .addComponent(jLabel3)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(setupPaneLayout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(setupPaneLayout.createSequentialGroup()
@@ -376,7 +392,7 @@ private boolean gameInProgress=false;
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 755, Short.MAX_VALUE)
+            .addGap(0, 757, Short.MAX_VALUE)
         );
 
         jPanel1.add(jPanel6, "card5");
@@ -389,7 +405,7 @@ private boolean gameInProgress=false;
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 755, Short.MAX_VALUE)
+            .addGap(0, 757, Short.MAX_VALUE)
         );
 
         jPanel1.add(jPanel5, "card4");
@@ -402,7 +418,7 @@ private boolean gameInProgress=false;
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 755, Short.MAX_VALUE)
+            .addGap(0, 757, Short.MAX_VALUE)
         );
 
         jPanel1.add(jPanel4, "card3");
@@ -415,7 +431,7 @@ private boolean gameInProgress=false;
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 755, Short.MAX_VALUE)
+            .addGap(0, 757, Short.MAX_VALUE)
         );
 
         jPanel1.add(jPanel3, "card2");
@@ -497,6 +513,7 @@ private boolean gameInProgress=false;
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
      if(!gameInProgress){
+         gameLog_TA.setText(gameLog_TA.getText()+"=================\n"+"Starting a New match"+"\n=================\n");
          setupMatch(); 
          gameInProgress=true;
          jLabel_CardPool.setText("Player's Hands");
@@ -539,7 +556,7 @@ private boolean gameInProgress=false;
         answer.setText(b+"\n"+a);        // TODO add your handling code here:
         for (int i=0; i<=p.knowsCard.size()-1;i++)
         {
-           answer.setText(answer.getText()+"\n Player "+p.name+" knows that player "
+           Knowledge.setText(Knowledge.getText()+"\n Player "+p.name+" knows that player "
                    +p.knowsCard.get(i).targetPlayer.name+ " has the card : "+p.knowsCard.get(i).targetCard.name);
         }
         p.checkWidowRaiseValue();
@@ -553,12 +570,19 @@ private boolean gameInProgress=false;
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 player selectedPlayer = playerPool.get(viewPlayerComboBox.getSelectedIndex());
-        actionExchangeCard(selectedPlayer, selectedPlayer.hand[0], playerPool.get(playerPool.size()-1).hand[0]);
+selectedPlayer.setPlayerIntention();
+       // actionExchangeCard(selectedPlayer, selectedPlayer.hand[0], playerPool.get(playerPool.size()-1).hand[0]);
+       if(selectedPlayer.playerDecision.yourCard != null)
+       {
+             actionExchangeCard(selectedPlayer, selectedPlayer.playerDecision.yourCard, selectedPlayer.playerDecision.widowCard);
+       }
+         
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         //the main restart button 
+        gameLog_TA.setText(gameLog_TA.getText()+"=================\n"+"Reseting Everything"+"\n=================\n");
         gameInProgress=false;
         jta_playablecards.setText("");
         pageSetup();
@@ -671,6 +695,7 @@ public static void openWebpage(URL url) {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea Knowledge;
     private javax.swing.JTextArea answer;
     private javax.swing.JTextArea gameLog_TA;
     private javax.swing.JButton jButton1;
@@ -680,6 +705,8 @@ public static void openWebpage(URL url) {
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel_CardPool;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -691,7 +718,6 @@ public static void openWebpage(URL url) {
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jta_playablecards;
     private javax.swing.JComboBox<String> playerCombobox;
     private javax.swing.JPanel setupPane;

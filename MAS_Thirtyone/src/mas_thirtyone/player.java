@@ -22,6 +22,7 @@ public class player {
    public ArrayList <cardKnowledge> knowsCard;
    public  ArrayList <playerHighSuitKnowledge>knowsPlayerhighSuit;
    public intention playerDecision;
+   public int NumberOfKnownPlayer; //it's the number of players, that we know at least one card 
    
    
    
@@ -250,6 +251,7 @@ public class player {
     }
     
     public void updateKnowledgeAfterExchange(player p , card argDropped, card argPickd) {
+       
         //removing previous knowledge 
         for(int i=0;i<=knowsCard.size()-1;i++)
         {
@@ -258,6 +260,7 @@ public class player {
                 if(knowsCard.get(i).targetCard.name.equals(argDropped.name))
                 {
                  knowsCard.remove(i);
+                
                     System.out.println("outdated Knoweledge was removed");
                   break;
                 }
@@ -265,8 +268,11 @@ public class player {
         }
         
         knowsCard.add(new cardKnowledge(p, argPickd));
+        
+        
     }
 
+   
     public int getPlayerNumber() {
         return playerNumber;
     }
@@ -426,5 +432,13 @@ public class player {
       }
       knowsPlayerhighSuit.add(new playerHighSuitKnowledge(target, suit));
   }
- 
+  
+  
+  
+  
+  private double CalculateOpponent(ArrayList<card> givenCards){
+      
+      return 0.0;
+  }
+  
 }

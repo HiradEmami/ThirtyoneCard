@@ -21,6 +21,8 @@ public class player {
    public  int playerNumber;
    public ArrayList <cardKnowledge> knowsCard;
    public  ArrayList <playerHighSuitKnowledge>knowsPlayerhighSuit;
+   public intention playerDecision;
+   
    
    
 
@@ -344,26 +346,75 @@ public class player {
    
   public void setPlayerIntention()
   {
-      if(this.handvalue==31)
+      if((this.handvalue == 31) || threeOfAKind)
       {
           //we put intention to call / fold
+          this.playerDecision.playerIntention=0;
+         
       }else{
-          if(threeOfAKind)
+          if(threeOfsameSuit){
+              if(checkWidowRaiseValue()){
+                  this.playerDecision.playerIntention=1;
+              }else{
+                this.playerDecision.playerIntention=0;
+
+              }
+              
+          }else{
+              if(twoOfAKind && !twoOfSameSuit )
           {
+              if(checkWidowRaiseValue()){ //specifically check TOK
+                  this.playerDecision.playerIntention=2;
+              }
               //we check the widow's deck to see if we can make any improvement
               //if we couldn't then we check if we can assume we can win
               //if we could make assumption, then we fold , if not we block 
           }else{
-              if(twoOfAKind && !twoOfSameSuit)
+              if(twoOfAKind && twoOfSameSuit)
               {
                   
               }else{
                   
               }
           }
+          }
       }
   }
-   
+  
+
+  
+  
+  private boolean checkWidowForTOK()
+  {
+      return  false;
+  }
+  
+  
+  
+  
+  public boolean checkWidowRaiseValue()
+  {
+      int counter=0;
+      for(int i=0; i<=knowsCard.size()-1;i++){
+          
+          if(knowsCard.get(i).targetPlayer.name.equals("widow") && knowsCard.get(i).targetCard.suit.equals(highestSuit)){
+         
+             
+          }
+          
+           for(int j=2;j>=0;j--)
+              
+          {
+              if(hand[j].value<knowsCard.get(i).targetCard.value)
+              {
+                  System.out.println(this.name +" can raise his value of same suit if he swaps "+hand[j].name+" with "+knowsCard.get(i).targetCard.name+
+                          " and the highest suit is : "+highestSuit);
+                  return true;
+              }
+          }
+      }
+      return false;
+  }
   
   public void updateKnowledgeplayerhighsuite(player target, String suit)
   {

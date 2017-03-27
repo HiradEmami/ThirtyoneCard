@@ -66,8 +66,9 @@ public class player {
         
      
        if (!threeOfAKind && !threeOfsameSuit && !twoOfAKind && !twoOfSameSuit)
-       {
+       {   
            setHighestSuit();
+          
           
        }
         setHighestCard();
@@ -363,7 +364,7 @@ public class player {
           this.playerDecision.playerIntention=0;
          
       }else{
-          if(threeOfsameSuit){
+          if(threeOfsameSuit){//of three of same suit
               if(checkWidowRaiseValue()){
                   this.playerDecision.playerIntention=1;
               }else{
@@ -372,7 +373,7 @@ public class player {
               
           }else{
               if(twoOfAKind && !twoOfSameSuit )
-          {
+          {//if two of same suit
               if(checkWidowForTOK()){ //specifically check TOK
                   this.playerDecision.playerIntention=2;
               }else{
@@ -384,13 +385,19 @@ public class player {
           }else{
               if(twoOfAKind && twoOfSameSuit)
               {
-               //if he had two of a kind and two of the same suit    
+               //if he had two of a kind and two of the same suit 
+                  checkWidowForTOK();
+                  checkWidowRaiseValue();
               }else{
                   if(!twoOfAKind && twoOfSameSuit)
               {
                  //if he only had two of same suit 
+                  checkWidowForTOK();
+                  checkWidowRaiseValue();
               }else{
                   //if he didnt have anything
+                  checkWidowRaiseValue();
+                  checkWidowForTOK();
               }
                   
               }
@@ -426,7 +433,7 @@ private void removeWidow()
 }
   
   
-  private boolean checkWidowForTOK()
+  public boolean checkWidowForTOK()
   {
       for(int i=0; i<=knowsCard.size()-1;i++){
           
@@ -435,6 +442,7 @@ private void removeWidow()
                           " to make 3 of a kind : "+highestCard.name);
               playerDecision.yourCard=hand[2];
                   playerDecision.widowCard=knowsCard.get(i).targetCard;
+                  return true;
           }
           
           
@@ -513,5 +521,6 @@ private void removeWidow()
       
       return 0.0;
   }
+  
   
 }

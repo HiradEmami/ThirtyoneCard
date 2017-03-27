@@ -331,17 +331,14 @@ private boolean gameInProgress=false;
                                 .addGap(51, 51, 51))
                             .addGroup(setupPaneLayout.createSequentialGroup()
                                 .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(setupPaneLayout.createSequentialGroup()
-                                        .addComponent(startButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton4))
-                                    .addGroup(setupPaneLayout.createSequentialGroup()
-                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                                .addContainerGap())
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(setupPaneLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addComponent(startButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton4)
+                                .addGap(46, 46, 46))))))
         );
         setupPaneLayout.setVerticalGroup(
             setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -559,7 +556,9 @@ private boolean gameInProgress=false;
            Knowledge.setText(Knowledge.getText()+"\n Player "+p.name+" knows that player "
                    +p.knowsCard.get(i).targetPlayer.name+ " has the card : "+p.knowsCard.get(i).targetCard.name);
         }
+        p.checkWidowForTOK();
         p.checkWidowRaiseValue();
+        
             }else{
                  JOptionPane.showMessageDialog(null, "The game is not in progress");
             }
@@ -572,11 +571,16 @@ private boolean gameInProgress=false;
 player selectedPlayer = playerPool.get(viewPlayerComboBox.getSelectedIndex());
 selectedPlayer.setPlayerIntention();
        // actionExchangeCard(selectedPlayer, selectedPlayer.hand[0], playerPool.get(playerPool.size()-1).hand[0]);
-       if(selectedPlayer.playerDecision.yourCard != null)
+      
+        if(selectedPlayer.playerDecision.playerIntention==123){gameLog_TA.setText(selectedPlayer.name+" won");} else{
+             if(selectedPlayer.playerDecision.yourCard != null)
        {
              actionExchangeCard(selectedPlayer, selectedPlayer.playerDecision.yourCard, selectedPlayer.playerDecision.widowCard);
-       }
-         
+             gameLog_TA.setText(" action");
+       }else{
+                 gameLog_TA.setText("No good action");
+             }
+        }
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -659,7 +663,12 @@ public static void openWebpage(URL url) {
       //  System.out.println(playerPool.get(playerNumber).name+" Exchanged with widow such that it dropped "+playerPool.get(playerPool.size()-1).hand[0].name
        // +" that meant to be "+argPlayercard.name+ " While it wanted to pick  "+argWidowcard.name+" and actually picked "+playerPool.get(playerNumber).hand[0].name);
     gameLog_TA.setText(gameLog_TA.getText()+"\n=================\n Player "+playerPool.get(playerNumber).name +" Swapped the Drpped the card "+argPlayercard.name+" and picked up "+argWidowcard.name);
-    
+    jta_playablecards.setText("");
+    for(int i=0;i<=playerPool.size()-1;i++)
+         {
+             jta_playablecards.setText(jta_playablecards.getText()+playerPool.get(i).name+" has :"+
+                     playerPool.get(i).hand[0].name+" , "+playerPool.get(i).hand[1].name+" , "+playerPool.get(i).hand[2].name+"\n");
+         }
       }
     }
     public static void main(String args[]) {

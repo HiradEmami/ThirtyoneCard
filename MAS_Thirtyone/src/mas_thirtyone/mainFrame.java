@@ -570,13 +570,15 @@ private boolean gameInProgress=false;
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 player selectedPlayer = playerPool.get(viewPlayerComboBox.getSelectedIndex());
 selectedPlayer.setPlayerIntention();
+        System.out.println(selectedPlayer.name+selectedPlayer.playerDecision.playerIntention);
        // actionExchangeCard(selectedPlayer, selectedPlayer.hand[0], playerPool.get(playerPool.size()-1).hand[0]);
       
-        if(selectedPlayer.playerDecision.playerIntention==123){gameLog_TA.setText(selectedPlayer.name+" won");} else{
+        if(selectedPlayer.playerDecision.playerIntention==12){gameLog_TA.setText(selectedPlayer.name+" won");} else{
              if(selectedPlayer.playerDecision.yourCard != null)
        {
              actionExchangeCard(selectedPlayer, selectedPlayer.playerDecision.yourCard, selectedPlayer.playerDecision.widowCard);
-             gameLog_TA.setText(" action");
+            gameLog_TA.setText(gameLog_TA.getText()+"Player "+selectedPlayer.name+" changed his "+selectedPlayer.playerDecision.yourCard.name+" with "+selectedPlayer.playerDecision.widowCard.name);
+              
        }else{
                  gameLog_TA.setText("No good action");
              }

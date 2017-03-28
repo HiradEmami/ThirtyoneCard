@@ -62,6 +62,9 @@ public class player {
           //needs work
             setTwoOfSameSuit();
             sortCards();} else{twoOfSameSuit=false;}
+        if(twoOfAKind){
+            
+        }
         
         
      
@@ -119,7 +122,10 @@ public class player {
     }
     
     public void setHighestSuit(){
-        sortCardsWithoutSuit();
+        if(!twoOfAKind && !threeOfAKind)
+        {
+            sortCardsWithoutSuit();
+        }
         highestSuit=hand[0].suit;
     }
     public void sortCardsWithoutSuit(){
@@ -366,20 +372,12 @@ public class player {
          
       }else{
           if(threeOfsameSuit){//of three of same suit
-              if(checkWidowRaiseValue()){
-                  this.playerDecision.playerIntention=1;
-              }else{
-                
-              }
+             
               
           }else{
               if(twoOfAKind && !twoOfSameSuit )
           {//if two of same suit
-              if(checkWidowForTOK()){ //specifically check TOK
-                  this.playerDecision.playerIntention=2;
-              }else{
-                  checkWidowRaiseValue();
-              }
+             
               //we check the widow's deck to see if we can make any improvement
               //if we couldn't then we check if we can assume we can win
               //if we could make assumption, then we fold , if not we block 
@@ -387,37 +385,16 @@ public class player {
               if(twoOfAKind && twoOfSameSuit)
               {
                //if he had two of a kind and two of the same suit 
-                  if(!checkWidowForTOK()){
-                      if(!checkWidowRaiseValue())
-                      {
-                          if(!checkTomakeNewTOK()){
-                              makeBestRandomMove();
-                          }
-                      }
-                  }
+                  
               }else{
                   if(!twoOfAKind && twoOfSameSuit)
               {
                  //if he only had two of same suit 
-                  if(!checkWidowForTOK()){
-                      if(!checkWidowRaiseValue())
-                      {
-                          if(!checkTomakeNewTOK()){
-                              makeBestRandomMove();
-                          }
-                      }
-                  }
+                  
                   
               }else{
                   //if he didnt have anything
-                  if(!checkWidowForTOK()){
-                      if(!checkWidowRaiseValue())
-                      {
-                          if(!checkTomakeNewTOK()){
-                              makeBestRandomMove();
-                          }
-                      }
-                  }
+                  
               }
                   
               }
@@ -452,10 +429,14 @@ private void removeWidow()
    }
 }
   
+
+
   
   public boolean checkWidowForTOK()
   {
-      for(int i=0; i<=knowsCard.size()-1;i++){
+      if(twoOfSameSuit){
+          
+          for(int i=0; i<=knowsCard.size()-1;i++){
           
           if(knowsCard.get(i).targetPlayer.name.equals("widow") && knowsCard.get(i).targetCard.type.equals(highestCard.type) ){
          System.out.println(this.name +" can raise his value of same suit if he swaps "+hand[2].name+" with "+knowsCard.get(i).targetCard.name+
@@ -463,9 +444,18 @@ private void removeWidow()
               playerDecision.yourCard=hand[2];
                   playerDecision.widowCard=knowsCard.get(i).targetCard;
                   return true;
-          }
+          }}
           
+      }else{
+          for(int i=0; i<=knowsCard.size()-1;i++){
           
+          if(knowsCard.get(i).targetPlayer.name.equals("widow") && knowsCard.get(i).targetCard.type.equals(highestCard.type) ){
+         System.out.println(this.name +" can raise his value of same suit if he swaps "+hand[2].name+" with "+knowsCard.get(i).targetCard.name+
+                          " to make 3 of a kind : "+highestCard.name);
+              playerDecision.yourCard=hand[2];
+                  playerDecision.widowCard=knowsCard.get(i).targetCard;
+                  return true;
+          }}
       }
       return  false;
   }
@@ -493,12 +483,15 @@ private void removeWidow()
            
             for(int i=0; i<=knowsCard.size()-1;i++){
           
-          if(knowsCard.get(i).targetPlayer.name.equals("widow") && knowsCard.get(i).targetCard.type.equals(hand[z]) ){
-         System.out.println(this.name +" can raise his value of same suit if he swaps "+hand[2].name+" with "+knowsCard.get(i).targetCard.name+
+          if(knowsCard.get(i).targetPlayer.name.equals("widow") && knowsCard.get(i).targetCard.type.equals(hand[z].type) ){
+         if(!hand[counter].type.equals(hand[z].type)){
+             System.out.println(this.name +" can make a new two of a kind if he swaps "+hand[counter].name+" with "+knowsCard.get(i).targetCard.name+
                           " to make 3 of a kind : "+highestCard.name);
               playerDecision.yourCard=hand[counter];
                   playerDecision.widowCard=knowsCard.get(i).targetCard;
                   return true;
+         }
+                  
           }
           
           
@@ -507,17 +500,30 @@ private void removeWidow()
       return  false;
       
   }
-  
+  public boolean checkWidowTOK()
+{ 
+    for(int i=0;i<=knowsCard.size()-1;i++)
+    {
+      if(knowsCard.get(i).targetPlayer.name.equals("widow") && knowsCard.get(i).targetCard.type.equals(highestCard.type) ){
+          System.out.println(this.name +" can raise his value of same type if he swaps "+hand[2].name+" with "+knowsCard.get(i).targetCard.name+
+                          " to make 3 of a kind highest card: "+highestCard.name);
+          return true; 
+              
+          }  
+    }
+      return false;
+}
   
   
   
   public boolean checkWidowRaiseValue()
   {
-      int counter=0;
+      
       for(int i=0; i<=knowsCard.size()-1;i++){
           
           if(knowsCard.get(i).targetPlayer.name.equals("widow") && knowsCard.get(i).targetCard.suit.equals(highestSuit)){
-         for(int j=2;j>=0;j--)
+         if(threeOfsameSuit){
+             for(int j=2;j>=0;j--)
               
           {
               if(hand[j].value<knowsCard.get(i).targetCard.value)
@@ -529,6 +535,20 @@ private void removeWidow()
                   return true;
               }
           }
+         }else{
+            for(int j=2;j>=0;j--)
+              
+          {System.out.println(hand[j].name+" card is being checked");
+              if(!hand[j].suit.equals(highestCard.suit))
+              {
+                  System.out.println(this.name +" can raise his value of same suit if he swaps "+hand[j].name+" with "+knowsCard.get(i).targetCard.name+
+                          " and the highest suit is : "+highestSuit);
+                  playerDecision.yourCard=hand[j];
+                  playerDecision.widowCard=knowsCard.get(i).targetCard;
+                  return true;
+              }
+          } 
+         }
              
           }
           

@@ -89,7 +89,7 @@ private boolean gameInProgress=false;
             playerPool.add(new player("p"+(i+1), getArandomCard(), getArandomCard(), getArandomCard()));
             playerPool.get(i).setPlayerNumber(i);
             gameLog_TA.setText(gameLog_TA.getText()+"\nPlayer "+playerPool.get(i).name+" is created");
-            gameLog_TA.setText(gameLog_TA.getText()+"\nCards after sorting "+playerPool.get(i).hand[0].name+playerPool.get(i).hand[1].name+playerPool.get(i).hand[2].name+"\n");
+            gameLog_TA.setText(gameLog_TA.getText()+"\nCards after sorting "+playerPool.get(i).hand[0].name+" , "+playerPool.get(i).hand[1].name+" , "+playerPool.get(i).hand[2].name+" , "+"\n");
             viewPlayerComboBox.addItem(playerPool.get(i).name);
         }
         viewPlayerComboBox.addItem("Widow");
@@ -556,7 +556,8 @@ private boolean gameInProgress=false;
            Knowledge.setText(Knowledge.getText()+"\n Player "+p.name+" knows that player "
                    +p.knowsCard.get(i).targetPlayer.name+ " has the card : "+p.knowsCard.get(i).targetCard.name);
         }
-        p.checkWidowForTOK();
+        p.checkTomakeNewTOK();
+        p.checkWidowTOK();
         p.checkWidowRaiseValue();
         
             }else{
@@ -651,6 +652,7 @@ public static void openWebpage(URL url) {
         playerPool.get(playerNumber).swapCard(argPlayercard, argWidowcard);
         playerPool.get(playerNumber).updatePlayerEntireKnowledge();
         playerPool.get(playerNumber).updateWidowKnowledge(playerPool.get(playerPool.size()-1));
+        playerPool.get(playerNumber).playerDecision.playerIntention=0;
         
         for(int i=0;i<=playerPool.size()-2;i++)
         {

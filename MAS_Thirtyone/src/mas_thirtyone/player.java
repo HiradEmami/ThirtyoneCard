@@ -372,12 +372,28 @@ public class player {
          
       }else{
           if(threeOfsameSuit){//of three of same suit
-             
+             if(checkWidowRaiseValue()){
+                 this.playerDecision.playerIntention=1;
+             }else{
+                 this.playerDecision.playerIntention=12;
+             }
               
           }else{
               if(twoOfAKind && !twoOfSameSuit )
           {//if two of same suit
-             
+             if(checkWidowTOK()){
+                 this.playerDecision.playerIntention=2;
+             }else{
+                 if(checkTomakeNewTOK()){
+                     this.playerDecision.playerIntention=2;
+                 }else{
+                     if(checkWidowRaiseValue()){
+                         this.playerDecision.playerIntention=1;
+                     }else{
+                         makeBestRandomMove();
+                     }
+                 }
+             }
               //we check the widow's deck to see if we can make any improvement
               //if we couldn't then we check if we can assume we can win
               //if we could make assumption, then we fold , if not we block 
@@ -385,15 +401,38 @@ public class player {
               if(twoOfAKind && twoOfSameSuit)
               {
                //if he had two of a kind and two of the same suit 
-                  
+                  if(checkWidowTOK()){
+                 this.playerDecision.playerIntention=2;
+             }else{
+                 if(checkWidowRaiseValue()){
+                     this.playerDecision.playerIntention=2;
+                 }else{
+                     if(checkTomakeNewTOK()){
+                         this.playerDecision.playerIntention=1;
+                     }else{
+                         makeBestRandomMove();
+                     }
+                 }
+             }
               }else{
                   if(!twoOfAKind && twoOfSameSuit)
               {
                  //if he only had two of same suit 
-                  
+                   
+                 if(checkWidowRaiseValue()){
+                     this.playerDecision.playerIntention=2;
+                 }else{
+                     if(checkTomakeNewTOK()){
+                         this.playerDecision.playerIntention=1;
+                     }else{
+                         makeBestRandomMove();
+                     }
+                 }
+             
                   
               }else{
                   //if he didnt have anything
+                  makeBestRandomMove();
                   
               }
                   
@@ -559,6 +598,7 @@ private void removeWidow()
   
   public boolean makeBestRandomMove()
   {
+      System.out.println("Random Move");
    
       for(int i=0; i<=knowsCard.size()-1;i++){
           

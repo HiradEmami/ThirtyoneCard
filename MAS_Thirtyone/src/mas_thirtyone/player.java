@@ -22,6 +22,7 @@ public class player {
    public ArrayList <cardKnowledge> knowsCard;
    public  ArrayList <playerHighSuitKnowledge>knowsPlayerhighSuit;
    public intention playerDecision;
+   public ArrayList <OtherInetntion> otherIntention;
   
    
    
@@ -51,6 +52,9 @@ public class player {
         
     }
 
+    
+  
+    
     public void updatePlayerEntireKnowledge()
     {
  

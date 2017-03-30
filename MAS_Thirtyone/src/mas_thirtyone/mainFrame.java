@@ -550,7 +550,9 @@ private boolean gameInProgress=false;
                                                                         + "hand's value "+p.handvalue+""
                                                                                 + "");
         
-        answer.setText(b+"\n"+a);        // TODO add your handling code here:
+        answer.setText(b+"\n"+a);   
+        Knowledge.setText("");
+        
         for (int i=0; i<=p.knowsCard.size()-1;i++)
         {
            Knowledge.setText(Knowledge.getText()+"\n Player "+p.name+" knows that player "

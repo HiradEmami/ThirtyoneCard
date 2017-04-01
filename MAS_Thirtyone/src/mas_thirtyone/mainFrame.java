@@ -69,6 +69,7 @@ private boolean gameInProgress=false;
     }
     
     private void setupMatch(){
+        playerTurn=0;
         
         //get number of players
         numberofPlayer=playerCombobox.getSelectedIndex()+1;
@@ -105,7 +106,7 @@ private boolean gameInProgress=false;
         }
         
         
-
+jlb_playerTurn.setText(playerPool.get(playerTurn).name);
     }
     
    
@@ -194,7 +195,6 @@ private boolean gameInProgress=false;
         setupPane = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jta_playablecards = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
         jLabel_CardPool = new javax.swing.JLabel();
         playerCombobox = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
@@ -211,6 +211,9 @@ private boolean gameInProgress=false;
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jlb_playerTurn = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -219,8 +222,10 @@ private boolean gameInProgress=false;
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.gray, java.awt.Color.gray));
@@ -231,20 +236,13 @@ private boolean gameInProgress=false;
         jta_playablecards.setRows(5);
         jScrollPane1.setViewportView(jta_playablecards);
 
-        jButton1.setText("Test with a Random Player ");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jLabel_CardPool.setText("All the cards in cardpool");
 
         playerCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2 players", "3 players", "4 players", "5 players", "6 players", "7 players" }));
 
         jLabel2.setText("Select the number of players:");
 
-        startButton.setText("Start");
+        startButton.setText("Start ");
         startButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startButtonActionPerformed(evt);
@@ -268,7 +266,7 @@ private boolean gameInProgress=false;
             }
         });
 
-        jButton4.setText("Make Sample ");
+        jButton4.setText("Next Turn");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -288,6 +286,17 @@ private boolean gameInProgress=false;
         jLabel3.setText("Select a Player: ");
 
         jLabel4.setText("Player knowledge");
+
+        jLabel5.setText("Next Turn:");
+
+        jlb_playerTurn.setText("jLabel6");
+
+        jButton2.setText("Specific Move");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout setupPaneLayout = new javax.swing.GroupLayout(setupPane);
         setupPane.setLayout(setupPaneLayout);
@@ -309,66 +318,75 @@ private boolean gameInProgress=false;
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10))
                     .addGroup(setupPaneLayout.createSequentialGroup()
-                        .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(setupPaneLayout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(playerCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, setupPaneLayout.createSequentialGroup()
+                        .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(setupPaneLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(playerCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(startButton))
+                            .addGroup(setupPaneLayout.createSequentialGroup()
                                 .addGap(8, 8, 8)
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(viewPlayerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(showButton)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(showButton))
+                            .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(setupPaneLayout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(jLabel4)
+                                .addContainerGap(267, Short.MAX_VALUE))
+                            .addGroup(setupPaneLayout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
-                                .addGap(0, 137, Short.MAX_VALUE)
-                                .addComponent(jButton1)
-                                .addGap(51, 51, 51))
-                            .addGroup(setupPaneLayout.createSequentialGroup()
-                                .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(setupPaneLayout.createSequentialGroup()
-                                .addComponent(startButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton4)
-                                .addGap(46, 46, 46))))))
+                                .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(32, 32, 32)
+                                        .addComponent(jlb_playerTurn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(9, 9, 9))
+                                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(58, 58, 58))))))
         );
         setupPaneLayout.setVerticalGroup(
             setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(setupPaneLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(playerCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(startButton)
-                    .addComponent(jButton4))
                 .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(setupPaneLayout.createSequentialGroup()
-                        .addGap(64, 64, 64)
+                        .addGap(32, 32, 32)
                         .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(viewPlayerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(showButton)
-                            .addComponent(jLabel3)))
+                            .addComponent(jLabel2)
+                            .addComponent(playerCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(startButton)))
+                    .addGroup(setupPaneLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jlb_playerTurn))
+                        .addGap(11, 11, 11)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(viewPlayerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(showButton)
+                        .addComponent(jLabel3))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(setupPaneLayout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(setupPaneLayout.createSequentialGroup()
-                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)))
+                .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane12)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
                 .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_CardPool)
                     .addComponent(jLabel1))
@@ -456,6 +474,20 @@ private boolean gameInProgress=false;
             }
         });
 
+        jButton1.setText("test");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Quit");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -464,10 +496,13 @@ private boolean gameInProgress=false;
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton7)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton7)
+                            .addComponent(jButton1))
+                        .addGap(0, 2, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -479,6 +514,10 @@ private boolean gameInProgress=false;
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -571,31 +610,54 @@ private boolean gameInProgress=false;
     }//GEN-LAST:event_showButtonActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-player selectedPlayer = playerPool.get(viewPlayerComboBox.getSelectedIndex());
-selectedPlayer.setPlayerIntention();
-        System.out.println(selectedPlayer.name+selectedPlayer.playerDecision.playerIntention);
+       if(playerTurn<=playerPool.size()-2)
+       {
+          this.playerTurn=playerTurn;
+ 
+       }else{
+           playerTurn=0;
+       }
+       
+        
+        playerPool.get(playerTurn).setPlayerIntention();
+        System.out.println(playerPool.get(playerTurn).name+playerPool.get(playerTurn).playerDecision.playerIntention);
        // actionExchangeCard(selectedPlayer, selectedPlayer.hand[0], playerPool.get(playerPool.size()-1).hand[0]);
       
-        if(selectedPlayer.playerDecision.playerIntention==12){gameLog_TA.setText(selectedPlayer.name+" won");} else{
-             if(selectedPlayer.playerDecision.yourCard != null)
+        if(playerPool.get(playerTurn).playerDecision.playerIntention==12){gameLog_TA.setText(playerPool.get(playerTurn).name+" won");} else{
+             if(playerPool.get(playerTurn).playerDecision.yourCard != null)
        {
-             actionExchangeCard(selectedPlayer, selectedPlayer.playerDecision.yourCard, selectedPlayer.playerDecision.widowCard);
-            gameLog_TA.setText(gameLog_TA.getText()+"Player "+selectedPlayer.name+" changed his "+selectedPlayer.playerDecision.yourCard.name+" with "+selectedPlayer.playerDecision.widowCard.name);
-              
+//             gameLog_TA.setText(gameLog_TA.getText()+"player intention: "+playerPool.get(playerTurn).playerDecision.possibleIntentions[playerPool.get(playerTurn).playerDecision.playerIntention]);
+           actionExchangeCard(playerPool.get(playerTurn), playerPool.get(playerTurn).playerDecision.yourCard, playerPool.get(playerTurn).playerDecision.widowCard);
+           // gameLog_TA.setText(gameLog_TA.getText()+"Player "+playerPool.get(playerTurn).name+" changed his "+playerPool.get(playerTurn).playerDecision.yourCard.name+" with "+playerPool.get(playerTurn).playerDecision.widowCard.name);
+             
+            playerTurn++; 
        }else{
                  gameLog_TA.setText("No good action");
              }
         }
-
+        
+        jlb_playerTurn.setText(playerPool.get(playerTurn).name);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         //the main restart button 
+        while(playerPool.size()!=0)
+        {
+          playerPool.remove(0);
+        }
+        playerTurn=0;
         gameLog_TA.setText(gameLog_TA.getText()+"=================\n"+"Reseting Everything"+"\n=================\n");
         gameInProgress=false;
         jta_playablecards.setText("");
         pageSetup();
         jLabel_CardPool.setText("All the cards in cardpool");
+        
+        
+       mainFrame m = new mainFrame();
+       m.setVisible(true);
+        this.dispose();
+        
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -619,6 +681,30 @@ selectedPlayer.setPlayerIntention();
             Logger.getLogger(MAS_Thirtyone.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+     player selectedPlayer = playerPool.get(viewPlayerComboBox.getSelectedIndex());
+selectedPlayer.setPlayerIntention();
+        System.out.println(selectedPlayer.name+selectedPlayer.playerDecision.playerIntention);
+       // actionExchangeCard(selectedPlayer, selectedPlayer.hand[0], playerPool.get(playerPool.size()-1).hand[0]);
+      
+        if(selectedPlayer.playerDecision.playerIntention==12){gameLog_TA.setText(selectedPlayer.name+" won");} else{
+             if(selectedPlayer.playerDecision.yourCard != null)
+       {
+             actionExchangeCard(selectedPlayer, selectedPlayer.playerDecision.yourCard, selectedPlayer.playerDecision.widowCard);
+//             gameLog_TA.setText(gameLog_TA.getText()+"player intention: "+playerPool.get(playerTurn).playerDecision.possibleIntentions[playerPool.get(playerTurn).playerDecision.playerIntention]);
+            gameLog_TA.setText(gameLog_TA.getText()+"Player "+selectedPlayer.name+" changed his "+selectedPlayer.playerDecision.yourCard.name+" with "+selectedPlayer.playerDecision.widowCard.name);
+              
+       }else{
+                 gameLog_TA.setText("No good action");
+             }
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       System.exit(0);
+    }//GEN-LAST:event_jButton3ActionPerformed
    
      public static void openWebpage(URI uri) {
     Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
@@ -714,6 +800,8 @@ public static void openWebpage(URL url) {
     private javax.swing.JTextArea answer;
     private javax.swing.JTextArea gameLog_TA;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -722,6 +810,7 @@ public static void openWebpage(URL url) {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel_CardPool;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -733,6 +822,7 @@ public static void openWebpage(URL url) {
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel jlb_playerTurn;
     private javax.swing.JTextArea jta_playablecards;
     private javax.swing.JComboBox<String> playerCombobox;
     private javax.swing.JPanel setupPane;

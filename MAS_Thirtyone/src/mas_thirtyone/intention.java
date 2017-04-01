@@ -19,6 +19,7 @@ public class intention {
     public intention(card yourCard, card widowCard) {
         this.yourCard = yourCard;
         this.widowCard = widowCard;
+        setPossibleIntentions();
     }
 
     public intention(String argType) {

@@ -585,7 +585,7 @@ private void removeWidow()
   {
       
       
-      if(twoOfAKind )
+      if(twoOfAKind && !twoOfSameSuit)
           {
           //JOptionPane.showMessageDialog(null, twokind.name);
           int swapPosition=0;

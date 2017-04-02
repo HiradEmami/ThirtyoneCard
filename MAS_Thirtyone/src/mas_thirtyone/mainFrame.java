@@ -643,7 +643,8 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
     }//GEN-LAST:event_showButtonActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       if(playerTurn<=playerPool.size()-2)
+      if(gameInProgress){
+           if(playerTurn<=playerPool.size()-2)
        {
           this.playerTurn=playerTurn;
  
@@ -662,14 +663,20 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
 //             gameLog_TA.setText(gameLog_TA.getText()+"player intention: "+playerPool.get(playerTurn).playerDecision.possibleIntentions[playerPool.get(playerTurn).playerDecision.playerIntention]);
            actionExchangeCard(playerPool.get(playerTurn), playerPool.get(playerTurn).playerDecision.yourCard, playerPool.get(playerTurn).playerDecision.widowCard);
            // gameLog_TA.setText(gameLog_TA.getText()+"Player "+playerPool.get(playerTurn).name+" changed his "+playerPool.get(playerTurn).playerDecision.yourCard.name+" with "+playerPool.get(playerTurn).playerDecision.widowCard.name);
-             
+             jlb_playerTurn.setText(playerPool.get(playerTurn).name);
             playerTurn++; 
        }else{
-                 gameLog_TA.setText("No good action");
+                 playerPool.get(playerTurn).makeBestRandomMove();
+                actionExchangeCard(playerPool.get(playerTurn), playerPool.get(playerTurn).playerDecision.yourCard, playerPool.get(playerTurn).playerDecision.widowCard);
+           jlb_playerTurn.setText(playerPool.get(playerTurn).name);
+           playerTurn++;
              }
         }
         
-        jlb_playerTurn.setText(playerPool.get(playerTurn).name);
+        
+      }else{
+          JOptionPane.showMessageDialog(null, "Please start the game first!");
+      }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

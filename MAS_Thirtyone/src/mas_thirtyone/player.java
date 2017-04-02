@@ -695,6 +695,7 @@ private void removeWidow()
   public boolean makeBestRandomMove()
   {
      
+      //check to make new TOK
       
       for(int j=0;j<=2;j++)
     {
@@ -730,6 +731,9 @@ private void removeWidow()
  
       }
     }
+      
+      //check to get same suit
+      
       for(int j=0;j<=2;j++)
     {
           for(int i=0; i<=knowsCard.size()-1;i++){
@@ -768,7 +772,10 @@ private void removeWidow()
       
       System.out.println("Random Move");
    
-    for(int j=0;j<=2;j++)
+    if(CanIblock()){
+        return true;
+    }else{
+        for(int j=0;j<=2;j++)
     {
           for(int i=0; i<=knowsCard.size()-1;i++){
           
@@ -785,6 +792,30 @@ private void removeWidow()
  
       }
     }
+    }
+      return false;
+  }
+  
+  public boolean CanIblock(){
+       for(int j=0;j<=otherIntention.size()-1;j++)
+    {
+          for(int i=0; i<=knowsCard.size()-1;i++){
+          
+          
+        
+              if(knowsCard.get(i).targetPlayer.name.equals("widow") && knowsCard.get(i).targetCard.suit.equals(otherIntention.get(j).targetHighsuit))
+              {
+                  JOptionPane.showConfirmDialog(null, "Blocking player "+otherIntention.get(j).targetPlayer);
+                  System.out.println(this.name +" can raise his value of same suit if he swaps "+hand[0].name+" with "+knowsCard.get(i).targetCard.name+
+                          " To be the best random move and the highest suit is : "+highestSuit);
+                  playerDecision.yourCard=hand[0];
+                  playerDecision.widowCard=knowsCard.get(i).targetCard;
+                  return true;
+              }
+ 
+      }
+    }
+      
       return false;
   }
 

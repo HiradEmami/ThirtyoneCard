@@ -405,7 +405,7 @@ public class player {
       }else{
           if(threeOfsameSuit){//of three of same suit
              if(checkWidowRaiseValue()){
-                 JOptionPane.showMessageDialog(null,"CheckWidowRaiseHand TOS" );
+                // JOptionPane.showMessageDialog(null,"CheckWidowRaiseHand TOS" );
                  this.playerDecision.playerIntention=1;
              }else{
                  this.playerDecision.playerIntention=12;
@@ -415,18 +415,18 @@ public class player {
               if(twoOfAKind && !twoOfSameSuit )
           {//if two of same suit
              if(checkWidowTOK()){
-                 JOptionPane.showMessageDialog(null,"CheckWidowTOK TOK but no TOS" );
+                // JOptionPane.showMessageDialog(null,"CheckWidowTOK TOK but no TOS" );
                  this.playerDecision.playerIntention=2;
              }else{
                  if(checkTomakeNewTOK()){
-                     JOptionPane.showMessageDialog(null,"CheckNewWidowTOK TOK but no TOS" );
+                    // JOptionPane.showMessageDialog(null,"CheckNewWidowTOK TOK but no TOS" );
                      this.playerDecision.playerIntention=2;
                  }else{
                      if(checkWidowRaiseValue()){
-                         JOptionPane.showMessageDialog(null,"CheckWidowRaiseHand TOK but no TOS" );
+                       //  JOptionPane.showMessageDialog(null,"CheckWidowRaiseHand TOK but no TOS" );
                          this.playerDecision.playerIntention=1;
                      }else{
-                         JOptionPane.showMessageDialog(null,"CheckWidowRandom TOK but no TOS" );
+                       //  JOptionPane.showMessageDialog(null,"CheckWidowRandom TOK but no TOS" );
                          makeBestRandomMove();
                      }
                  }
@@ -439,18 +439,18 @@ public class player {
               {
                //if he had two of a kind and two of the same suit 
                   if(checkWidowTOK()){
-                      JOptionPane.showMessageDialog(null,"CheckWidowTOK TOK but TOS" );
+                    //  JOptionPane.showMessageDialog(null,"CheckWidowTOK TOK but TOS" );
                  this.playerDecision.playerIntention=2;
              }else{
                  if(checkWidowRaiseValue()){
-                     JOptionPane.showMessageDialog(null,"CheckWidowRaiseHand TOK but TOS" );
+                     //JOptionPane.showMessageDialog(null,"CheckWidowRaiseHand TOK but TOS" );
                      this.playerDecision.playerIntention=2;
                  }else{
                      if(checkTomakeNewTOK()){
-                         JOptionPane.showMessageDialog(null,"CheckNewWidowTOK TOK but TOS" );
+                        // JOptionPane.showMessageDialog(null,"CheckNewWidowTOK TOK but TOS" );
                          this.playerDecision.playerIntention=1;
                      }else{
-                        JOptionPane.showMessageDialog(null,"CheckWidowRandom TOK but TOS" );
+                       // JOptionPane.showMessageDialog(null,"CheckWidowRandom TOK but TOS" );
                          makeBestRandomMove();
                      }
                  }
@@ -461,15 +461,15 @@ public class player {
                  //if he only had two of same suit 
                    
                  if(checkWidowRaiseValue()){
-                     JOptionPane.showMessageDialog(null,"CheckWidowRaiseHand noTOK but TOS" );
+                     //JOptionPane.showMessageDialog(null,"CheckWidowRaiseHand noTOK but TOS" );
                      this.playerDecision.playerIntention=2;
                  }else{
                      if(checkTomakeNewTOK()){
-                         JOptionPane.showMessageDialog(null,"CheckNewWidowTOK noTOK but TOS" );
+                       //  JOptionPane.showMessageDialog(null,"CheckNewWidowTOK noTOK but TOS" );
                          
                          this.playerDecision.playerIntention=1;
                      }else{
-                         JOptionPane.showMessageDialog(null,"CheckWidowRandom noTOK but TOS" );
+                       //  JOptionPane.showMessageDialog(null,"CheckWidowRandom noTOK but TOS" );
                          makeBestRandomMove();
                      }
                  }
@@ -478,7 +478,7 @@ public class player {
               }else{
                   //if he didnt have anything
                   makeBestRandomMove();
-                  JOptionPane.showMessageDialog(null,"CheckWidowRandom only Random" );
+                  //JOptionPane.showMessageDialog(null,"CheckWidowRandom only Random" );
               }
                   
               }

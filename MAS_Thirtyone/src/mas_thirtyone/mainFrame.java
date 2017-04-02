@@ -620,16 +620,16 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
         p.checkTomakeNewTOK(); //two of a kind
         p.checkWidowTOK(); //
         p.checkWidowRaiseValue();
-        Other_Intention.setText("Player "+p.name+" considers: \n");
+        Other_Intention.setText("\nPlayer "+p.name+" considers: \n");
        for(int w=0;w<=p.otherIntention.size()-1;w++)
        {if(p.otherIntention.get(w).set){
            
-            Other_Intention.setText(Other_Intention.getText()+p.otherIntention.get(w).targetPlayer +" has high suit of "+p.otherIntention.get(w).targetHighsuit);
-            if(p.otherIntention.get(w).TOK != null){
+            Other_Intention.setText("\n"+Other_Intention.getText()+p.otherIntention.get(w).targetPlayer +" has high suit of "+p.otherIntention.get(w).targetHighsuit);
+            if(!p.otherIntention.get(w).hasTOK){
                 Other_Intention.setText(Other_Intention.getText()+"\n"+p.otherIntention.get(w).targetPlayer +" does not have TOK ");
             
             }else{
-               Other_Intention.setText(Other_Intention.getText()+"\n"+p.otherIntention.get(w).targetPlayer+" has TOK ");
+               Other_Intention.setText(Other_Intention.getText()+"\n"+p.otherIntention.get(w).targetPlayer+" has TOK with kind: "+ p.otherIntention.get(w).TOK);
              
             }
        }}

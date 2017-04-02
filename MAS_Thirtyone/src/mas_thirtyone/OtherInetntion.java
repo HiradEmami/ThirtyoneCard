@@ -9,6 +9,7 @@ public String targetHighsuit;
 public int[] swappedtype ={0,0,0,0,0,0,0,0,0};
 public String TOK;
 public boolean set;
+public boolean hasTOK;
 
     public OtherInetntion(String argPlayer) {
         this.targetPlayer=argPlayer;
@@ -20,10 +21,11 @@ public boolean set;
         swappedSuit[4]=0; //idontknow what suit it is
         TOK=null;
         set=false;
+        hasTOK=false;
         
     }
 
-    private void setTargetHighsuit()
+    public void setTargetHighsuit()
     {
         int temp=swappedSuit[4];
         int position=4;
@@ -89,9 +91,11 @@ public boolean set;
     }
     
   public String setTOK(){
+      
       for(int i=0;i<swappedtype.length-2;i++)
       {
           if(swappedtype[i]>=2){
+              hasTOK=true;
               switch(i)
               {
                   case 0:{TOK="7"; break;}

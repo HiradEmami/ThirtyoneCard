@@ -75,6 +75,7 @@ public class player {
             if(otherIntention.get(i).targetPlayer.equals(p.name)){
                 otherIntention.get(i).setType(picked, Dropped);
                 otherIntention.get(i).updateSuitKnowledge(picked.suit);
+                otherIntention.get(i).setTargetHighsuit();
                 otherIntention.get(i).setTOK();
                 otherIntention.get(i).set=true;
             }

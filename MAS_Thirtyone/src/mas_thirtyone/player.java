@@ -24,6 +24,7 @@ public class player {
    public  ArrayList <playerHighSuitKnowledge>knowsPlayerhighSuit;
    public intention playerDecision;
    public ArrayList <OtherInetntion> otherIntention;
+   public boolean call=false;
   
    
    
@@ -36,6 +37,7 @@ public class player {
         this.knowsPlayerhighSuit= new ArrayList<playerHighSuitKnowledge>();
         this.playerDecision=new intention("self");
         
+        
         hand[0]=argFirst;
         hand[1]=argSecond;
         hand[2]=argThird;
@@ -47,14 +49,37 @@ public class player {
           knowsCard.add(new cardKnowledge(this, hand[2]));
           knowsCard.get(2).setType("self");
           
+          otherIntention=new ArrayList<OtherInetntion>();
+          
     updatePlayerEntireKnowledge();
           
         
         
     }
 
-    
+    public void initiateOtherIntention(player p){
+       
+            if(!name.equals(p.name) && !p.name.equals("widow"))
+            {
+                System.out.println(p.name);
+                OtherInetntion x=new OtherInetntion(p.name);
+               otherIntention.add(x); 
+            }
+        
+        
+    }
   
+    public void updateOtherIntention(card picked, card Dropped, player p){
+        for (int i=0;i<=otherIntention.size()-1;i++)
+        {
+            if(otherIntention.get(i).targetPlayer.equals(p.name)){
+                otherIntention.get(i).setType(picked, Dropped);
+                otherIntention.get(i).updateSuitKnowledge(picked.suit);
+                otherIntention.get(i).setTOK();
+                otherIntention.get(i).set=true;
+            }
+        }
+    }
     
     public void updatePlayerEntireKnowledge()
     {
@@ -373,6 +398,7 @@ public class player {
       {
           //we put intention to call / fold
           this.playerDecision.playerIntention=12;
+          call=true;
           
          
       }else{
@@ -558,7 +584,8 @@ private void removeWidow()
       
   }
   public boolean checkWidowTOK()
-{ int swapPosition=0;
+{ if(twoOfAKind){
+    int swapPosition=0;
         
           
           for(int j=2;j>=0;j--)
@@ -576,6 +603,7 @@ private void removeWidow()
               
           }  
     }
+}
       return false;
 }
   
@@ -667,24 +695,23 @@ private void removeWidow()
   {
       System.out.println("Random Move");
    
-      for(int i=0; i<=knowsCard.size()-1;i++){
+    for(int j=0;j<=2;j++)
+    {
+          for(int i=0; i<=knowsCard.size()-1;i++){
           
           
         
-              if(knowsCard.get(i).targetPlayer.name.equals("widow") && hand[2].value<knowsCard.get(i).targetCard.value)
+              if(knowsCard.get(i).targetPlayer.name.equals("widow") && hand[j].value<knowsCard.get(i).targetCard.value)
               {
-                  System.out.println(this.name +" can raise his value of same suit if he swaps "+hand[2].name+" with "+knowsCard.get(i).targetCard.name+
+                  System.out.println(this.name +" can raise his value of same suit if he swaps "+hand[j].name+" with "+knowsCard.get(i).targetCard.name+
                           " To be the best random move and the highest suit is : "+highestSuit);
-                  playerDecision.yourCard=hand[2];
+                  playerDecision.yourCard=hand[j];
                   playerDecision.widowCard=knowsCard.get(i).targetCard;
                   return true;
               }
-          
-             
-          
-          
-           
+ 
       }
+    }
       return false;
   }
 

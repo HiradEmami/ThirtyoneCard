@@ -4,12 +4,13 @@ package mas_thirtyone;
 
 public class OtherInetntion {
 public int[] swappedSuit;
-public player targetPlayer;
+public String targetPlayer;
 public String targetHighsuit;
 public int[] swappedtype ={0,0,0,0,0,0,0,0,0};
 public String TOK;
+public boolean set;
 
-    public OtherInetntion(player argPlayer) {
+    public OtherInetntion(String argPlayer) {
         this.targetPlayer=argPlayer;
         swappedSuit=new int[5];
         swappedSuit[0]=0; //spade
@@ -18,6 +19,7 @@ public String TOK;
         swappedSuit[3]=0; //clubs
         swappedSuit[4]=0; //idontknow what suit it is
         TOK=null;
+        set=false;
         
     }
 

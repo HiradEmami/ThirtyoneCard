@@ -103,6 +103,10 @@ private boolean gameInProgress=false;
         for(int z=0;z<=playerPool.size()-1;z++)
         {
             playerPool.get(z).updateWidowKnowledge(playerPool.get(playerPool.size()-1));
+            for (int k=0;k<=playerPool.size()-2;k++)
+            {
+                playerPool.get(z).initiateOtherIntention(playerPool.get(k));
+            }
         }
         
         
@@ -214,6 +218,9 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
         jLabel5 = new javax.swing.JLabel();
         jlb_playerTurn = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        Other_Intention = new javax.swing.JTextArea();
+        jLabel6 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -289,7 +296,7 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
 
         jLabel5.setText("Next Turn:");
 
-        jlb_playerTurn.setText("jLabel6");
+        jlb_playerTurn.setText("Not Started");
 
         jButton2.setText("Specific Move");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -297,6 +304,12 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
                 jButton2ActionPerformed(evt);
             }
         });
+
+        Other_Intention.setColumns(20);
+        Other_Intention.setRows(5);
+        jScrollPane4.setViewportView(Other_Intention);
+
+        jLabel6.setText("Other's Intention");
 
         javax.swing.GroupLayout setupPaneLayout = new javax.swing.GroupLayout(setupPane);
         setupPane.setLayout(setupPaneLayout);
@@ -311,12 +324,6 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
             .addGroup(setupPaneLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10))
                     .addGroup(setupPaneLayout.createSequentialGroup()
                         .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(setupPaneLayout.createSequentialGroup()
@@ -334,14 +341,6 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
                                 .addComponent(showButton))
                             .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(setupPaneLayout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addComponent(jLabel4)
-                                .addContainerGap(267, Short.MAX_VALUE))
-                            .addGroup(setupPaneLayout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -352,7 +351,26 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
                                         .addGap(9, 9, 9))
                                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(58, 58, 58))))))
+                                .addGap(58, 58, 58))
+                            .addGroup(setupPaneLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
+                                    .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(10, 10, 10))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 788, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(22, 22, 22)))))))
         );
         setupPaneLayout.setVerticalGroup(
             setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -379,14 +397,16 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
                         .addComponent(viewPlayerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(showButton)
                         .addComponent(jLabel3))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane12)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_CardPool)
                     .addComponent(jLabel1))
@@ -407,7 +427,7 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 757, Short.MAX_VALUE)
+            .addGap(0, 760, Short.MAX_VALUE)
         );
 
         jPanel1.add(jPanel6, "card5");
@@ -420,7 +440,7 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 757, Short.MAX_VALUE)
+            .addGap(0, 760, Short.MAX_VALUE)
         );
 
         jPanel1.add(jPanel5, "card4");
@@ -433,7 +453,7 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 757, Short.MAX_VALUE)
+            .addGap(0, 760, Short.MAX_VALUE)
         );
 
         jPanel1.add(jPanel4, "card3");
@@ -446,7 +466,7 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 757, Short.MAX_VALUE)
+            .addGap(0, 760, Short.MAX_VALUE)
         );
 
         jPanel1.add(jPanel3, "card2");
@@ -498,10 +518,10 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton7)
-                            .addComponent(jButton1))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 2, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -516,9 +536,9 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -597,9 +617,22 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
            Knowledge.setText(Knowledge.getText()+"\n Player "+p.name+" knows that player "
                    +p.knowsCard.get(i).targetPlayer.name+ " has the card : "+p.knowsCard.get(i).targetCard.name);
         }
-        p.checkTomakeNewTOK();
-        p.checkWidowTOK();
+        p.checkTomakeNewTOK(); //two of a kind
+        p.checkWidowTOK(); //
         p.checkWidowRaiseValue();
+        Other_Intention.setText("Player "+p.name+" considers: \n");
+       for(int w=0;w<=p.otherIntention.size()-1;w++)
+       {if(p.otherIntention.get(w).set){
+           
+            Other_Intention.setText(Other_Intention.getText()+p.otherIntention.get(w).targetPlayer +" has high suit of "+p.otherIntention.get(w).targetHighsuit);
+            if(p.otherIntention.get(w).TOK != null){
+                Other_Intention.setText(Other_Intention.getText()+"\n"+p.otherIntention.get(w).targetPlayer +" does not have TOK ");
+            
+            }else{
+               Other_Intention.setText(Other_Intention.getText()+"\n"+p.otherIntention.get(w).targetPlayer+" has TOK ");
+             
+            }
+       }}
         
             }else{
                  JOptionPane.showMessageDialog(null, "The game is not in progress");
@@ -623,7 +656,7 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
         System.out.println(playerPool.get(playerTurn).name+playerPool.get(playerTurn).playerDecision.playerIntention);
        // actionExchangeCard(selectedPlayer, selectedPlayer.hand[0], playerPool.get(playerPool.size()-1).hand[0]);
       
-        if(playerPool.get(playerTurn).playerDecision.playerIntention==12){gameLog_TA.setText(playerPool.get(playerTurn).name+" won");} else{
+        if(playerPool.get(playerTurn).playerDecision.playerIntention==12 || playerPool.get(playerTurn).call){ endgame(playerPool.get(playerTurn).name);gameLog_TA.setText( playerPool.get(playerTurn).name+" won");} else{
              if(playerPool.get(playerTurn).playerDecision.yourCard != null)
        {
 //             gameLog_TA.setText(gameLog_TA.getText()+"player intention: "+playerPool.get(playerTurn).playerDecision.possibleIntentions[playerPool.get(playerTurn).playerDecision.playerIntention]);
@@ -653,9 +686,15 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
         jLabel_CardPool.setText("All the cards in cardpool");
         
         
-       mainFrame m = new mainFrame();
+       int dialogButton = JOptionPane.YES_NO_OPTION;
+int dialogResult = JOptionPane.showConfirmDialog(this, "Would you like to restard the match?", "Restart", dialogButton);
+if(dialogResult == 0) {
+   mainFrame m = new mainFrame();
        m.setVisible(true);
         this.dispose();
+} else {
+  System.out.println("No Option was selected");
+}
         
         
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -688,7 +727,7 @@ selectedPlayer.setPlayerIntention();
         System.out.println(selectedPlayer.name+selectedPlayer.playerDecision.playerIntention);
        // actionExchangeCard(selectedPlayer, selectedPlayer.hand[0], playerPool.get(playerPool.size()-1).hand[0]);
       
-        if(selectedPlayer.playerDecision.playerIntention==12){gameLog_TA.setText(selectedPlayer.name+" won");} else{
+        if(selectedPlayer.playerDecision.playerIntention==12 || selectedPlayer.call){endgame(selectedPlayer.name);gameLog_TA.setText(selectedPlayer.name+" won");} else{
              if(selectedPlayer.playerDecision.yourCard != null)
        {
              actionExchangeCard(selectedPlayer, selectedPlayer.playerDecision.yourCard, selectedPlayer.playerDecision.widowCard);
@@ -760,8 +799,73 @@ public static void openWebpage(URL url) {
          {
              jta_playablecards.setText(jta_playablecards.getText()+playerPool.get(i).name+" has :"+
                      playerPool.get(i).hand[0].name+" , "+playerPool.get(i).hand[1].name+" , "+playerPool.get(i).hand[2].name+"\n");
+             
+             playerPool.get(i).updateOtherIntention(argWidowcard, argPlayercard, argPlayer);
          }
       }
+    }
+    
+    
+    private void endgame(String name){
+        
+        double highest= playerPool.get(0).handvalue;
+        boolean draw =false;
+        boolean changed_afterDraw=false;
+        int currentHighest=0;
+        int drawposition=0;
+        for(int i =1; i<=playerPool.size()-2;i++)
+        {
+            if(!playerPool.get(i).name.equals("widow"))
+            {
+                if(highest==playerPool.get(i).handvalue)
+                {
+                    draw=true;
+                    drawposition=0;
+                }else{
+                    if(highest<playerPool.get(i).handvalue){
+                        if(draw){changed_afterDraw=true; currentHighest=i; highest=playerPool.get(i).handvalue;}
+                        
+                        else{currentHighest=i; highest=playerPool.get(i).handvalue;}
+                    }
+                }
+            }
+            
+           
+        }
+         if(changed_afterDraw){
+                JOptionPane.showMessageDialog(null, "The game is over. Player "+name+
+                        " called!"+"\n After evaluation player "+playerPool.get(currentHighest).name+
+                        " with hand value of "+highest+" won this round"+"\n his hand was "
+                        +playerPool.get(currentHighest).hand[0].name+" , "+playerPool.get(currentHighest).hand[1].name+" , "+playerPool.get(currentHighest).hand[2].name
+                            +"\n\nThe game will restart now");
+            }else{
+                if(draw){
+                    JOptionPane.showMessageDialog(null, "The game is over. Player "+name+
+                        " called!"+"\n After evaluation there is a draw between player "+playerPool.get(currentHighest).name+
+                        " with hand value of "+highest+" and player " +playerPool.get(drawposition).name+
+                        " with hand value of "+playerPool.get(drawposition).handvalue +"\n player's  "+playerPool.get(currentHighest).name +"hand was "
+                        +playerPool.get(currentHighest).hand[0].name+" , "+playerPool.get(currentHighest).hand[1].name+" , "+playerPool.get(currentHighest).hand[2].name
+                            +"\n player's  "+playerPool.get(drawposition).name +"hand was "
+                        +playerPool.get(drawposition).hand[0].name+" , "+playerPool.get(drawposition).hand[1].name+" , "+playerPool.get(drawposition).hand[2].name
+                            +"\n\nThe game will restart now"); 
+                }else{
+                   JOptionPane.showMessageDialog(null, "The game is over. Player "+name+
+                        " called!"+"\n After evaluation player "+playerPool.get(currentHighest).name+
+                        " with hand value of "+highest+" won this round"+"\n his hand was "
+                        +playerPool.get(currentHighest).hand[0].name+" , "+playerPool.get(currentHighest).hand[1].name+" , "+playerPool.get(currentHighest).hand[2].name
+                            +"\n\nThe game will restart now");;  
+                }
+            }
+         int dialogButton = JOptionPane.YES_NO_OPTION;
+int dialogResult = JOptionPane.showConfirmDialog(this, "Would you like to restard the match?", "Restart", dialogButton);
+if(dialogResult == 0) {
+   mainFrame m = new mainFrame();
+       m.setVisible(true);
+        this.dispose();
+} else {
+  System.out.println("No Option was selected");
+} 
+       
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -797,6 +901,7 @@ public static void openWebpage(URL url) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea Knowledge;
+    private javax.swing.JTextArea Other_Intention;
     private javax.swing.JTextArea answer;
     private javax.swing.JTextArea gameLog_TA;
     private javax.swing.JButton jButton1;
@@ -811,6 +916,7 @@ public static void openWebpage(URL url) {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel_CardPool;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -822,6 +928,7 @@ public static void openWebpage(URL url) {
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel jlb_playerTurn;
     private javax.swing.JTextArea jta_playablecards;
     private javax.swing.JComboBox<String> playerCombobox;

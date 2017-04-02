@@ -694,6 +694,78 @@ private void removeWidow()
   
   public boolean makeBestRandomMove()
   {
+     
+      
+      for(int j=0;j<=2;j++)
+    {
+          for(int i=0; i<=knowsCard.size()-1;i++){
+          
+          
+        
+              if(knowsCard.get(i).targetPlayer.name.equals("widow") && hand[j].type.equals(knowsCard.get(i).targetCard.type))
+              {
+                  int counter=0;
+                  switch(j)
+           {
+               case 0:
+               {
+                   counter=2;
+                   break;
+               }
+               case 1:
+               {counter=2;
+                   break;
+               }
+               case 2:
+               {counter=0;
+                   break;
+               }
+           }
+                  System.out.println(this.name +" can raise his value of same suit if he swaps "+hand[counter].name+" with "+knowsCard.get(i).targetCard.name+
+                          " To be the best random move and the highest suit is : "+highestSuit);
+                  playerDecision.yourCard=hand[counter];
+                  playerDecision.widowCard=knowsCard.get(i).targetCard;
+                  return true;
+              }
+ 
+      }
+    }
+      for(int j=0;j<=2;j++)
+    {
+          for(int i=0; i<=knowsCard.size()-1;i++){
+          
+          
+        
+              if(knowsCard.get(i).targetPlayer.name.equals("widow") && hand[j].suit.equals(knowsCard.get(i).targetCard.suit))
+              {
+                  int counter=0;
+                  switch(j)
+           {
+               case 0:
+               {
+                   counter=2;
+                   break;
+               }
+               case 1:
+               {counter=2;
+                   break;
+               }
+               case 2:
+               {counter=0;
+                   break;
+               }
+           }
+                  System.out.println(this.name +" can raise his value of same suit if he swaps "+hand[counter].name+" with "+knowsCard.get(i).targetCard.name+
+                          " To be the best random move and the highest suit is : "+highestSuit);
+                  playerDecision.yourCard=hand[counter];
+                  playerDecision.widowCard=knowsCard.get(i).targetCard;
+                  return true;
+              }
+ 
+      }
+    }
+      
+      
       System.out.println("Random Move");
    
     for(int j=0;j<=2;j++)

@@ -15,7 +15,7 @@ public boolean hasTOK;
         this.targetPlayer=argPlayer;
         swappedSuit=new int[5];
         swappedSuit[0]=0; //spade
-        swappedSuit[1]=0; //dimond
+        swappedSuit[1]=0; //diamond
         swappedSuit[2]=0; //heart
         swappedSuit[3]=0; //clubs
         swappedSuit[4]=0; //idontknow what suit it is
@@ -50,7 +50,7 @@ public boolean hasTOK;
                 break;
             }
             case 1:{
-                targetHighsuit="dimond";
+                targetHighsuit="diamond";
                 break;
             }
             case 2:{
@@ -75,7 +75,7 @@ public boolean hasTOK;
                 swappedSuit[0]++;
                 break;
             }
-            case "dimond":{
+            case "diamond":{
                 swappedSuit[1]++;
                 break;
             }

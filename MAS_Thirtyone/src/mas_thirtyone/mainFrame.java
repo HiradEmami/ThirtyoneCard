@@ -2,6 +2,7 @@
 package mas_thirtyone;
 
 import java.awt.Desktop;
+import java.awt.Toolkit;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -24,7 +25,7 @@ private boolean gameInProgress=false;
     public mainFrame() {
         initComponents();
         pageSetup(); //page setup function
-        
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("spades-poker-icon-37083.png")));
     }
     
     public void testWithRandomPlayer(){
@@ -132,13 +133,13 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
         for (int i=7; i<=10;i++)
     {
         cardPool.add(new card("s"+i, i,"spade")); //spade suit
-        cardPool.add(new card("d"+i, i, "dimond")); //dimond suit
+        cardPool.add(new card("d"+i, i, "diamond")); //diamond suit
         cardPool.add(new card("h"+i, i, "heart")); //heart suit
         cardPool.add(new card("c"+i, i, "club")); //club suit 
         
     }
      cardPool.add(new card("s"+"k", 10,"spade"));cardPool.add(new card("s"+"q", 10,"spade"));cardPool.add(new card("s"+"j", 10,"spade"));cardPool.add(new card("s"+"a", 11,"spade"));
-     cardPool.add(new card("d"+"k", 10, "dimond"));cardPool.add(new card("d"+"q", 10, "dimond"));cardPool.add(new card("d"+"j", 10, "dimond"));cardPool.add(new card("d"+"a", 11, "dimond"));
+     cardPool.add(new card("d"+"k", 10, "diamond"));cardPool.add(new card("d"+"q", 10, "diamond"));cardPool.add(new card("d"+"j", 10, "diamond"));cardPool.add(new card("d"+"a", 11, "diamond"));
      cardPool.add(new card("h"+"k", 10, "heart"));cardPool.add(new card("h"+"q", 10, "heart"));cardPool.add(new card("h"+"j", 10, "heart"));cardPool.add(new card("h"+"a", 11, "heart"));
      cardPool.add(new card("c"+"k", 10, "club"));cardPool.add(new card("c"+"q", 10, "club"));cardPool.add(new card("c"+"j", 10, "club"));cardPool.add(new card("c"+"a", 11, "club"));
     
@@ -156,10 +157,10 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
          }
         }
         jta_playablecards.setText(jta_playablecards.getText()+"\n");
-         jta_playablecards.setText(jta_playablecards.getText()+"Dimond cards: ");
+         jta_playablecards.setText(jta_playablecards.getText()+"diamond cards: ");
         for (int i=0;i<=cardPool.size()-1;i++)
         {
-         if(cardPool.get(i).suit.equals("dimond"))
+         if(cardPool.get(i).suit.equals("diamond"))
          {
                jta_playablecards.setText(jta_playablecards.getText()+" , "+cardPool.get(i).name);
          }
@@ -309,22 +310,22 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
         Other_Intention.setRows(5);
         jScrollPane4.setViewportView(Other_Intention);
 
-        jLabel6.setText("Other's Intention");
+        jLabel6.setText("Other's intention");
 
         javax.swing.GroupLayout setupPaneLayout = new javax.swing.GroupLayout(setupPane);
         setupPane.setLayout(setupPaneLayout);
         setupPaneLayout.setHorizontalGroup(
             setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(setupPaneLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(306, 318, Short.MAX_VALUE)
                 .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel_CardPool)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10))
             .addGroup(setupPaneLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
                 .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(setupPaneLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
                         .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(setupPaneLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
@@ -338,39 +339,42 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(viewPlayerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(showButton))
-                            .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(32, 32, 32)
-                                        .addComponent(jlb_playerTurn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(9, 9, 9))
-                                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(58, 58, 58))
-                            .addGroup(setupPaneLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(showButton))))
+                    .addGroup(setupPaneLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20)
+                .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(32, 32, 32)
+                                .addComponent(jlb_playerTurn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(9, 9, 9))
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(58, 58, 58))
+                    .addGroup(setupPaneLayout.createSequentialGroup()
                         .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
-                                    .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(10, 10, 10))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setupPaneLayout.createSequentialGroup()
-                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 788, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(22, 22, 22)))))))
+                            .addGroup(setupPaneLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane3))
+                        .addContainerGap())))
+            .addGroup(setupPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(setupPaneLayout.createSequentialGroup()
+                        .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel_CardPool)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane4)
+                    .addGroup(setupPaneLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         setupPaneLayout.setVerticalGroup(
             setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -402,9 +406,9 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
                 .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane12)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(setupPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -423,7 +427,7 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 830, Short.MAX_VALUE)
+            .addGap(0, 842, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -436,7 +440,7 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 830, Short.MAX_VALUE)
+            .addGap(0, 842, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -449,7 +453,7 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 830, Short.MAX_VALUE)
+            .addGap(0, 842, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -462,7 +466,7 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 830, Short.MAX_VALUE)
+            .addGap(0, 842, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -522,8 +526,7 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
                             .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 2, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -546,7 +549,7 @@ jlb_playerTurn.setText(playerPool.get(playerTurn).name);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 834, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 846, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
